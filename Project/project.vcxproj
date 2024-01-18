@@ -29,14 +29,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -71,12 +71,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)</OutDir>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -87,8 +92,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,7 +123,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -146,6 +152,98 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="code\bg.cpp" />
+    <ClCompile Include="code\billboard.cpp" />
+    <ClCompile Include="code\block.cpp" />
+    <ClCompile Include="code\blockX.cpp" />
+    <ClCompile Include="code\camera.cpp" />
+    <ClCompile Include="code\debugproc.cpp" />
+    <ClCompile Include="code\edit.cpp" />
+    <ClCompile Include="code\effect.cpp" />
+    <ClCompile Include="code\explosion.cpp" />
+    <ClCompile Include="code\fade.cpp" />
+    <ClCompile Include="code\field.cpp" />
+    <ClCompile Include="code\game.cpp" />
+    <ClCompile Include="code\input.cpp" />
+    <ClCompile Include="code\itemX.cpp" />
+    <ClCompile Include="code\life.cpp" />
+    <ClCompile Include="code\light.cpp" />
+    <ClCompile Include="code\main.cpp" />
+    <ClCompile Include="code\manager.cpp" />
+    <ClCompile Include="code\map.cpp" />
+    <ClCompile Include="code\material.cpp" />
+    <ClCompile Include="code\model.cpp" />
+    <ClCompile Include="code\modelHierarchy.cpp" />
+    <ClCompile Include="code\motion.cpp" />
+    <ClCompile Include="code\multibg.cpp" />
+    <ClCompile Include="code\number.cpp" />
+    <ClCompile Include="code\object.cpp" />
+    <ClCompile Include="code\object2D.cpp" />
+    <ClCompile Include="code\object3D.cpp" />
+    <ClCompile Include="code\objectX.cpp" />
+    <ClCompile Include="code\particle.cpp" />
+    <ClCompile Include="code\pause.cpp" />
+    <ClCompile Include="code\playermodel.cpp" />
+    <ClCompile Include="code\polygon.cpp" />
+    <ClCompile Include="code\precompile.cpp" />
+    <ClCompile Include="code\ranking.cpp" />
+    <ClCompile Include="code\renderer.cpp" />
+    <ClCompile Include="code\result.cpp" />
+    <ClCompile Include="code\score.cpp" />
+    <ClCompile Include="code\sound.cpp" />
+    <ClCompile Include="code\texture.cpp" />
+    <ClCompile Include="code\time.cpp" />
+    <ClCompile Include="code\title.cpp" />
+    <ClCompile Include="code\titleTex.cpp" />
+    <ClCompile Include="code\tutrial.cpp" />
+    <ClCompile Include="code\wall.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\bg.h" />
+    <ClInclude Include="code\billboard.h" />
+    <ClInclude Include="code\block.h" />
+    <ClInclude Include="code\blockX.h" />
+    <ClInclude Include="code\camera.h" />
+    <ClInclude Include="code\debugproc.h" />
+    <ClInclude Include="code\edit.h" />
+    <ClInclude Include="code\effect.h" />
+    <ClInclude Include="code\explosion.h" />
+    <ClInclude Include="code\fade.h" />
+    <ClInclude Include="code\field.h" />
+    <ClInclude Include="code\game.h" />
+    <ClInclude Include="code\input.h" />
+    <ClInclude Include="code\itemX.h" />
+    <ClInclude Include="code\life.h" />
+    <ClInclude Include="code\light.h" />
+    <ClInclude Include="code\main.h" />
+    <ClInclude Include="code\manager.h" />
+    <ClInclude Include="code\map.h" />
+    <ClInclude Include="code\material.h" />
+    <ClInclude Include="code\model.h" />
+    <ClInclude Include="code\modelHierarchy.h" />
+    <ClInclude Include="code\motion.h" />
+    <ClInclude Include="code\multibg.h" />
+    <ClInclude Include="code\number.h" />
+    <ClInclude Include="code\object.h" />
+    <ClInclude Include="code\object2D.h" />
+    <ClInclude Include="code\object3D.h" />
+    <ClInclude Include="code\objectX.h" />
+    <ClInclude Include="code\particle.h" />
+    <ClInclude Include="code\pause.h" />
+    <ClInclude Include="code\playermodel.h" />
+    <ClInclude Include="code\polygon.h" />
+    <ClInclude Include="code\precompile.h" />
+    <ClInclude Include="code\ranking.h" />
+    <ClInclude Include="code\renderer.h" />
+    <ClInclude Include="code\result.h" />
+    <ClInclude Include="code\score.h" />
+    <ClInclude Include="code\sound.h" />
+    <ClInclude Include="code\texture.h" />
+    <ClInclude Include="code\time.h" />
+    <ClInclude Include="code\title.h" />
+    <ClInclude Include="code\titleTex.h" />
+    <ClInclude Include="code\tutorial.h" />
+    <ClInclude Include="code\wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
