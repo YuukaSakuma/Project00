@@ -80,12 +80,6 @@ CPlayerModel::CPlayerModel()
 	m_fRotDiff = 0.0f;		//差分
 
 	m_nLife = LIFE;
-
-	m_nCntStart = 100;
-	m_nCntScore = 0;
-
-	m_bAutoMove = false;
-	m_bSecondJump = false;
 }
 
 //==============================================================
@@ -121,11 +115,6 @@ CPlayerModel::CPlayerModel(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 	
 	m_nLife = LIFE;
 
-	m_nCntStart = 100;
-	m_nCntScore = 0;
-
-	m_bAutoMove = false;
-	m_bSecondJump = false;
 	m_bHit = false;
 }
 
@@ -301,7 +290,6 @@ void CPlayerModel::Update(void)
 	if (CObjectX::Collision(&m_pos, &m_posOld, &m_move, m_min, m_max) == true)
 	{
 		m_bJump = false;	//ジャンプしてない状態にする
-		m_bSecondJump = false;
 		m_bLand = true;		//着地した状態にする
 	}
 
@@ -463,19 +451,71 @@ void CPlayerModel::Walk(void)
 	//キーが押されたとき
 	if (pInputKeyboard->GetPress(DIK_A) == true)
 	{//Aキーが押された
-		m_move.x += cosf(CameraRot.y + -D3DX_PI * 0.5f) * SPEED;
-		m_move.z += sinf(CameraRot.y + -D3DX_PI * 0.5f) * SPEED;
+		if (pInputKeyboard->GetPress(DIK_W) == true)
+		{//左上移動
+			m_move.x += cosf(CameraRot.y + -D3DX_PI * 0.25f) * SPEED;
+			m_move.z += sinf(CameraRot.y + -D3DX_PI * 0.25f) * SPEED;
 
-		m_fRotDest = -CameraRot.y + D3DX_PI * 0.0f;
+			m_fRotDest = CameraRot.y + D3DX_PI * -0.25f;
 
+		}
+		else if (pInputKeyboard->GetPress(DIK_S) == true)
+		{//左下移動
+			m_move.x += cosf(CameraRot.y + D3DX_PI * 0.25f) * SPEED;
+			m_move.z += sinf(CameraRot.y + D3DX_PI * 0.25f) * SPEED;
+
+			m_fRotDest = CameraRot.y + D3DX_PI * -0.75f;
+		}
+		else
+		{//左移動
+			m_move.x += cosf(CameraRot.y + -D3DX_PI * 0.0f) * SPEED;
+			m_move.z += sinf(CameraRot.y + -D3DX_PI * 0.0f) * SPEED;
+
+			m_fRotDest = CameraRot.y + D3DX_PI * -0.5f;
+		}
 		m_bMove = true;			//歩いてるかの判定
 	}
 	else if (pInputKeyboard->GetPress(DIK_D) == true)
 	{//Dキーが押された
+
+		if (pInputKeyboard->GetPress(DIK_W) == true)
+		{//
+			m_move.x += cosf(CameraRot.y + D3DX_PI * -0.75f) * SPEED;
+			m_move.z += sinf(CameraRot.y + D3DX_PI * -0.75f) * SPEED;
+
+			m_fRotDest = CameraRot.y + D3DX_PI * 0.25f;
+		}
+		else if (pInputKeyboard->GetPress(DIK_S) == true)
+		{//
+			m_move.x += cosf(CameraRot.y + D3DX_PI * 0.75f) * SPEED;
+			m_move.z += sinf(CameraRot.y + D3DX_PI * 0.75f) * SPEED;
+
+			m_fRotDest = CameraRot.y + D3DX_PI * 0.75f;
+		}
+		else
+		{//
+			m_move.x += cosf(CameraRot.y + D3DX_PI * 1.0f) * SPEED;
+			m_move.z += sinf(CameraRot.y + D3DX_PI * 1.0f) * SPEED;
+
+			m_fRotDest = CameraRot.y + D3DX_PI * 0.5f;
+		}
+		m_bMove = true;			//歩いてるかの判定
+	}
+	else if (pInputKeyboard->GetPress(DIK_W) == true)
+	{//Wキーが押された
+		m_move.x += cosf(CameraRot.y + -D3DX_PI * 0.5f) * SPEED;
+		m_move.z += sinf(CameraRot.y + -D3DX_PI * 0.5f) * SPEED;
+
+		m_fRotDest = CameraRot.y + D3DX_PI * 0.0f;
+
+		m_bMove = true;			//歩いてるかの判定
+	}
+	else if (pInputKeyboard->GetPress(DIK_S) == true)
+	{//Sキーが押された
 		m_move.x += cosf(CameraRot.y + D3DX_PI * 0.5f) * SPEED;
 		m_move.z += sinf(CameraRot.y + D3DX_PI * 0.5f) * SPEED;
 
-		m_fRotDest = -CameraRot.y + D3DX_PI * 1.0f;
+		m_fRotDest = CameraRot.y + -D3DX_PI * 1.0f;
 
 		m_bMove = true;			//歩いてるかの判定
 	}

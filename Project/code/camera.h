@@ -30,10 +30,18 @@ public:
 	void SetPositionRY(float posY) { m_posR.y = posY; }		//注視点位置Y設定
 	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }		//向き設定
 	D3DXVECTOR3 GetRotation(void) { return m_rot; }			//向き取得
+	
 
 	void Move(void);
 
 private:
+
+	void MoveA(void);
+	void MoveV(void);
+	void MoveR(void);
+	void SetV(void);
+	void SetR(void);
+
 	D3DXMATRIX m_mtxView;					//ビューマトリックス
 	D3DXMATRIX m_mtxProjection;				//プロジェクションマトリックス
 

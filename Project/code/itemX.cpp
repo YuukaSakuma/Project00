@@ -131,8 +131,6 @@ void CItemX::Hit(void)
 	//スコア加算
 	pScore->Add(700);
 
-	pPlayer->SetCounter(300);
-
 	//終了処理
 	CItemX::Uninit();
 }
