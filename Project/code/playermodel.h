@@ -12,6 +12,7 @@
 //前方宣言
 class CModelHier;	//モデルの階層構造
 class CMotion;		//モーションの階層構造
+class CCamera;
 
 //==============================================================
 //プレイヤークラス
@@ -49,6 +50,8 @@ public:
 	int GetLife(void) { return m_nLife; }
 
 private:
+	void Adjust(void);
+
 
 	static char *m_apFileName[15];		//ファイル名
 
@@ -80,6 +83,7 @@ private:
 	float m_fRotMove;
 
 	CMotion *m_pMotion;		//モーション情報
+	CCamera* m_pCamera;
 
 	int m_nLife;			//体力
 	bool m_bHit;			//死んでいるか

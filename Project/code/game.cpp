@@ -59,8 +59,9 @@ HRESULT CGame::Init(void)
 	//カメラの初期化処理
 	pCamera->Init();
 
-	m_pMap = CMap::Create();
+	//m_pMap = CMap::Create();
 
+	CField::Create(CObject::TYPE_NONE, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	//プレイヤーの生成
 	m_pPlayerModel = CPlayerModel::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));

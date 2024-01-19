@@ -12,6 +12,11 @@
 //前方宣言
 class CPlayer;
 
+//マクロ定義
+#define MAX_CAMERA_ROTZ (D3DX_PI * 0.999f)	// カメラ最大角度
+#define MIN_CAMERA_ROTZ (D3DX_PI * 0.01f)	// カメラ最大角度
+
+
 //==============================================================
 //カメラクラス
 //==============================================================
@@ -26,13 +31,14 @@ public:
 	void Update(void);		//更新書影
 	void Set(void);			//設定処理
 
-	void SetPositionVY(float posY) { m_posV.y = posY; }		//視点位置Y設定
-	void SetPositionRY(float posY) { m_posR.y = posY; }		//注視点位置Y設定
+	void SetPositionV(D3DXVECTOR3 pos);		//視点位置Y設定
+	void SetPositionR(D3DXVECTOR3 pos);		//注視点位置Y設定
 	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }		//向き設定
 	D3DXVECTOR3 GetRotation(void) { return m_rot; }			//向き取得
 	
-
+	//void Move(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot);
 	void Move(void);
+	void Setting(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot);
 
 private:
 
@@ -58,6 +64,8 @@ private:
 	float m_fRotMove;						//現在の方向(角度)
 	float m_fRotDest;						//目標の方向(角度)
 	float m_fRotDiff;						//目標の方向までの差分
+
+	float m_fLength;						//視点と注視点の距離
 
 };
 
