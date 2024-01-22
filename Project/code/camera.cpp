@@ -8,7 +8,7 @@
 #include"renderer.h"
 #include"manager.h"
 #include"input.h"
-#include"playermodel.h"
+#include"player.h"
 #include"game.h"
 
 //マクロ定義
@@ -83,7 +83,7 @@ void CCamera::Update(void)
 {
 	CInputKeyboard *pInputKeyboard = CManager::Get()->GetInputKeybard();	//キーボードの取得
 	CDebugProc *pDebugProc = CManager::Get()->GetDebugProc();
-	CPlayerModel *pPlayer = CGame::GetPlayerModel();			//プレイヤーの情報取得
+	CPlayer *pPlayer = CGame::GetPlayerModel();			//プレイヤーの情報取得
 
 
 	if (CManager::GetMode() == CScene::MODE_GAME)
@@ -308,7 +308,7 @@ void CCamera::Set(void)
 void CCamera::Move(void)
 {
 
-	CPlayerModel *pPlayer = CGame::GetPlayerModel();			//プレイヤーの情報取得
+	CPlayer *pPlayer = CGame::GetPlayerModel();			//プレイヤーの情報取得
 
 	D3DXVECTOR3 posRDest = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	// 目標の注視点
 	D3DXVECTOR3 posVDest = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	// 目標の視点

@@ -10,7 +10,7 @@
 #include"titleTex.h"
 #include"fade.h"
 #include"game.h"
-#include"playermodel.h"
+#include"player.h"
 
 #define WIDTH_LIFE		(400.0f)		//‘Ì—Í•\Ž¦‚Ì‰¡•
 #define HEIGHT_LIFE		(20.0f)			//‘Ì—Í•\Ž¦‚Ìc•
@@ -179,7 +179,7 @@ void CLife::Draw(void)
 //==============================================================
 void CLife::SetNum(int nNumBullet)
 {
-	CPlayerModel *pPlayer = CGame::GetPlayerModel();
+	CPlayer *pPlayer = CGame::GetPlayerModel();
 
 	if (nNumBullet > 0)
 	{//‰ñ•œ‚Ìê‡

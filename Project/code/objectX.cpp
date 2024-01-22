@@ -14,7 +14,7 @@
 #include"object.h"
 #include"material.h"
 #include"game.h"
-#include"playermodel.h"
+#include"player.h"
 
 //==============================================================
 //コンストラクタ
@@ -273,7 +273,7 @@ void CObjectX::SetObject(void)
 bool CObjectX::Collision(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld, D3DXVECTOR3 *pMove, D3DXVECTOR3 Min, D3DXVECTOR3 Max)
 {
 
-	CPlayerModel *pPlayer = CGame::GetPlayerModel();			//プレイヤーの情報取得
+	CPlayer *pPlayer = CGame::GetPlayerModel();			//プレイヤーの情報取得
 	bool bLand = false;
 
 	for (int nCntModel = 0; nCntModel < MAX_OBJECT; nCntModel++)

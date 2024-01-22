@@ -7,7 +7,7 @@
 #include"itemX.h"
 #include"game.h"
 #include "model.h"
-#include "playerModel.h"
+#include "player.h"
 #include "material.h"
 #include "sound.h"
 #include "score.h"
@@ -122,7 +122,7 @@ void CItemX::Draw(void)
 //==============================================================
 void CItemX::Hit(void)
 {
-	CPlayerModel *pPlayer = CGame::GetPlayerModel();
+	CPlayer *pPlayer = CGame::GetPlayerModel();
 	CScore *pScore = CGame::GetScore();
 	CSound *pSound = CManager::Get()->GetSound();
 

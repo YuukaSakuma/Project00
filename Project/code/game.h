@@ -34,7 +34,7 @@ public:
 	void Uninit(void);		//終了処理
 	void Update(void);		//更新処理
 	void Draw(void);		//描画処理
-	static CPlayerModel *GetPlayerModel(void) { return m_pPlayerModel; }				//プレイヤーの情報
+	static CPlayer *GetPlayerModel(void) { return m_pPlayerModel; }				//プレイヤーの情報
 	static CScore *GetScore(void) { return m_pScore; }
 	CTime *GetTime(void) { return m_pTime; }
 	//static CLife *GetLife(void) { return m_pLife; }
@@ -42,7 +42,7 @@ public:
 private:
 
 	static CScore *m_pScore;		//スコアの情報
-	static CPlayerModel *m_pPlayerModel;	//プレイヤーの情報
+	static CPlayer *m_pPlayerModel;	//プレイヤーの情報
 	static CModel *m_pModel;		//モデルの情報
 	static CField *m_pField;		//床の情報
 	static CTime *m_pTime;

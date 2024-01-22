@@ -11,7 +11,7 @@
 
 //前方宣言
 class CScore;			//スコアの情報
-class CPlayerModel;		//プレイヤーの情報
+class CPlayer;		//プレイヤーの情報
 class CEnemyModel;		//敵の情報
 class CModel;			//モデルの情報
 class CField;			//床の情報
@@ -33,7 +33,7 @@ public:
 private:
 
 	static CScore *m_pScore;
-	static CPlayerModel *m_pPlayerModel;
+	static CPlayer *m_pPlayerModel;
 	static CEnemyModel *m_pEnemyModel;
 	static CModel *m_pModel;
 	static CField *m_pField;

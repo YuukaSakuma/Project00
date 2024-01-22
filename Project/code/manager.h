@@ -16,7 +16,7 @@
 #include"debugproc.h"
 
 //前方宣言
-class CPlayerModel;
+class CPlayer;
 class CMaterial;
 class CTitle;			//タイトル画面
 class CTutorial;		//チュートリアル画面
@@ -83,7 +83,7 @@ public:
 
 	 CRenderer * GetRenderer(void);			//レンダラーの取得
 	 CInputKeyboard *GetInputKeybard(void);	//キーボードの取得
-	 CPlayerModel * GetPlayerModel(void);		//プレイヤーの取得
+	 CPlayer * GetPlayerModel(void);		//プレイヤーの取得
 	 CCamera * GetCamera(void);				//カメラの取得
 	 CLight * GetLight(void);					//ライトの取得
 	 CTexture * GetTexturet(void);			//テクスチャの取得
@@ -106,7 +106,7 @@ private:
 
 	 CRenderer *m_pRenderer;					//レンダラーのポインタ
 	 CInputKeyboard *m_pInputKeyboard;		//キーボードのポインタ
-	 CPlayerModel * m_pPlayerModel;			//プレイヤーのポインタ
+	 CPlayer * m_pPlayerModel;			//プレイヤーのポインタ
 	 CSound * m_pSound;						//サウンドのポインタ
 	 CCamera * m_pCamera;						//カメラのポインタ
 	 CLight * m_pLight;						//カメラのポインタ

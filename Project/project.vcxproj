@@ -183,7 +183,7 @@
     <ClCompile Include="code\objectX.cpp" />
     <ClCompile Include="code\particle.cpp" />
     <ClCompile Include="code\pause.cpp" />
-    <ClCompile Include="code\playermodel.cpp" />
+    <ClCompile Include="code\player.cpp" />
     <ClCompile Include="code\polygon.cpp" />
     <ClCompile Include="code\precompile.cpp" />
     <ClCompile Include="code\ranking.cpp" />
@@ -230,7 +230,7 @@
     <ClInclude Include="code\objectX.h" />
     <ClInclude Include="code\particle.h" />
     <ClInclude Include="code\pause.h" />
-    <ClInclude Include="code\playermodel.h" />
+    <ClInclude Include="code\player.h" />
     <ClInclude Include="code\polygon.h" />
     <ClInclude Include="code\precompile.h" />
     <ClInclude Include="code\ranking.h" />

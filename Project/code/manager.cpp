@@ -21,7 +21,7 @@
 #include"sound.h"
 #include"camera.h"
 #include"blockX.h"
-#include"playermodel.h"
+#include"player.h"
 #include"field.h"
 #include"model.h"
 #include"title.h"
@@ -531,7 +531,7 @@ CInputKeyboard *CManager::GetInputKeybard(void)
 //==============================================================
 //プレイヤーのデバイスの取得
 //==============================================================
-CPlayerModel *CManager::GetPlayerModel(void)
+CPlayer *CManager::GetPlayerModel(void)
 {
 	return m_pPlayerModel;
 }

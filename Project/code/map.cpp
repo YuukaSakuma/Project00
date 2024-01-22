@@ -7,7 +7,7 @@
 #include"renderer.h"
 #include"map.h"
 #include"input.h"
-#include"playermodel.h"
+#include"player.h"
 #include"manager.h"
 #include"blockX.h"
 #include"field.h"

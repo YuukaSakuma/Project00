@@ -1,8 +1,21 @@
-﻿  playermodel.cpp
+﻿  bg.cpp
+  camera.cpp
+  debugproc.cpp
+  game.cpp
+  itemX.cpp
+  life.cpp
+  light.cpp
+  manager.cpp
+  map.cpp
+  material.cpp
+  modelHierarchy.cpp
+  objectX.cpp
+  particle.cpp
+  tutrial.cpp
   コード生成しています。
-  4 of 471 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+  41 of 471 functions ( 8.7%) were compiled, the rest were copied from previous compilation.
+    24 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\project.exe
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\project.pdb (Full PDB)

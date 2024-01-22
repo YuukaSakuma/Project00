@@ -7,14 +7,14 @@
 #include"renderer.h"
 #include"tutorial.h"
 #include"input.h"
-#include"playermodel.h"
+#include"player.h"
 #include"manager.h"
 #include"object2D.h"
 #include"fade.h"
 
 
 //静的メンバ変数
-CPlayerModel *CTutorial::m_pPlayerModel = NULL;	//プレイヤーの情報
+CPlayer *CTutorial::m_pPlayerModel = NULL;	//プレイヤーの情報
 bool CTutorial::m_bReset = true;					//リセットしたかどうか
 
 //==============================================================

@@ -6,7 +6,7 @@
 //==============================================================
 #include"renderer.h"
 #include"game.h"
-#include"playermodel.h"
+#include"player.h"
 #include"blockX.h"
 #include"field.h"
 #include"score.h"
@@ -23,7 +23,7 @@
 #define START_SCORE (0)			//開始スコア
 
 //静的メンバ変数
-CPlayerModel *CGame::m_pPlayerModel = NULL;	//プレイヤーの情報
+CPlayer *CGame::m_pPlayerModel = NULL;	//プレイヤーの情報
 CScore *CGame::m_pScore = NULL;
 CTime *CGame::m_pTime = NULL;
 CEdit *CGame::m_pEdit = NULL;
@@ -64,7 +64,7 @@ HRESULT CGame::Init(void)
 	CField::Create(CObject::TYPE_NONE, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	//プレイヤーの生成
-	m_pPlayerModel = CPlayerModel::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pPlayerModel = CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	////スコアの生成
 	//m_pScore = CScore::Create(D3DXVECTOR3(800.0f, 50.0f, 0.0f));
