@@ -9,7 +9,7 @@
 #include "renderer.h"
 #include "object.h"
 #include "objectX.h"
-#include "material.h"
+#include "Xfile.h"
 
 //マクロ定義
 #define NUM_MODEL			(2)			//モデルの種類
@@ -136,7 +136,7 @@ CModelHier *CModelHier::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, char *pFileName
 //==============================================================
 HRESULT CModelHier::Init(D3DXVECTOR3 pos, D3DXVECTOR3 rot, char *pFileName)
 {
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 
 	//モデルの読み込み
 	m_nIdxModel = pMaterial->Regit(pFileName);
@@ -183,7 +183,7 @@ void CModelHier::Update(void)
 void CModelHier::Draw(void)
 {
 	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
 	D3DMATERIAL9 matDef;			//現在のマテリアル保存用
 	D3DXMATERIAL *pMat;
@@ -281,7 +281,7 @@ void CModelHier::Draw(void)
 //==============================================================
 void CModelHier::SetObject(void)
 {
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 
 	int nNumVtx;					//頂点数
 	DWORD dwSizeFVF;				//頂点フォーマットのサイズ

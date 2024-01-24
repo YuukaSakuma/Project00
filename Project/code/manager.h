@@ -17,7 +17,7 @@
 
 //前方宣言
 class CPlayer;
-class CMaterial;
+class CXFile;
 class CTitle;			//タイトル画面
 class CTutorial;		//チュートリアル画面
 class CGame;			//ゲーム画面
@@ -87,7 +87,7 @@ public:
 	 CCamera * GetCamera(void);				//カメラの取得
 	 CLight * GetLight(void);					//ライトの取得
 	 CTexture * GetTexturet(void);			//テクスチャの取得
-	 CMaterial *GetMaterial(void) { return m_pMaterial; }		//マテリアルの取得
+	 CXFile *GetMaterial(void) { return m_pMaterial; }		//マテリアルの取得
 	 CDebugProc *GetDebugProc(void);			//デバッグプロックの取得
 	 CFade *GetFade(void);
 	 CSound *GetSound(void);
@@ -111,7 +111,7 @@ private:
 	 CCamera * m_pCamera;						//カメラのポインタ
 	 CLight * m_pLight;						//カメラのポインタ
 	 CTexture * m_pTexture;					//テクスチャのポインタ
-	 CMaterial *m_pMaterial;		//マテリアルの情報
+	 CXFile *m_pMaterial;		//マテリアルの情報
 	 CDebugProc *m_pDebugProc;				//デバッグプロックのポインタ
 
 	static CScene *m_pScene;	//シーンのポインタ

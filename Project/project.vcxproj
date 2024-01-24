@@ -171,7 +171,7 @@
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\manager.cpp" />
     <ClCompile Include="code\map.cpp" />
-    <ClCompile Include="code\material.cpp" />
+    <ClCompile Include="code\Xfile.cpp" />
     <ClCompile Include="code\model.cpp" />
     <ClCompile Include="code\modelHierarchy.cpp" />
     <ClCompile Include="code\motion.cpp" />
@@ -218,7 +218,7 @@
     <ClInclude Include="code\main.h" />
     <ClInclude Include="code\manager.h" />
     <ClInclude Include="code\map.h" />
-    <ClInclude Include="code\material.h" />
+    <ClInclude Include="code\Xfile.h" />
     <ClInclude Include="code\model.h" />
     <ClInclude Include="code\modelHierarchy.h" />
     <ClInclude Include="code\motion.h" />

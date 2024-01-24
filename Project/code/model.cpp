@@ -12,7 +12,7 @@
 #include"model.h"
 #include"renderer.h"
 #include<string.h>
-#include"material.h"
+#include"Xfile.h"
 
 LPD3DXMESH CModel::m_pMesh = NULL;						//メッシュ（頂点情報）へのポインタ
 LPD3DXBUFFER CModel::m_pBuffMat = NULL;					//マテリアルへのポインタ
@@ -119,7 +119,7 @@ void CModel::Unload(void)
 //==============================================================
 HRESULT CModel::Init(void)
 {
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 
 	//モデルの読み込み
 	m_nIdxModel = pMaterial->Regit(m_pFilename);

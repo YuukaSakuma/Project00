@@ -30,7 +30,7 @@
 #include"result.h"
 #include"ranking.h"
 #include"fade.h"
-#include"material.h"
+#include"Xfile.h"
 
 //静的メンバ変数
 
@@ -289,7 +289,7 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL hWindow)
 	//マテリアルの生成
 	if (m_pMaterial == NULL)
 	{
-		m_pMaterial = new CMaterial;
+		m_pMaterial = new CXFile;
 	}
 
 	if (m_pMaterial != NULL)

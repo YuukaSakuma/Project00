@@ -8,7 +8,7 @@
 #include"game.h"
 #include "model.h"
 #include "player.h"
-#include "material.h"
+#include "Xfile.h"
 #include "sound.h"
 #include "score.h"
 
@@ -73,7 +73,7 @@ CItemX *CItemX::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 //==============================================================
 HRESULT CItemX::Init(void)
 {
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 
 	//ƒ‚ƒfƒ‹‚Ì“Ç‚Ýž‚Ý
 	m_nIdx = pMaterial->Regit("data\\MODEL\\coin.x");

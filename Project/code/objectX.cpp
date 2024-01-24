@@ -12,7 +12,7 @@
 #include"renderer.h"
 #include<string.h>
 #include"object.h"
-#include"material.h"
+#include"Xfile.h"
 #include"game.h"
 #include"player.h"
 
@@ -107,7 +107,7 @@ void CObjectX::Update(void)
 void CObjectX::Draw(void)
 {
 	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
 	D3DMATERIAL9 matDef;			//現在のマテリアル保存用
 	D3DXMATERIAL *pMat;
@@ -213,7 +213,7 @@ void CObjectX::BindXFile(LPD3DXMESH pMesh, LPD3DXBUFFER pBuffMat, DWORD dwNumMat
 //==============================================================
 void CObjectX::SetObject(void)
 {
-	CMaterial *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetMaterial();
 
 	int nNumVtx;					//頂点数
 	DWORD dwSizeFVF;				//頂点フォーマットのサイズ
