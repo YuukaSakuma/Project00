@@ -35,9 +35,47 @@ public:
 		LPDIRECT3DTEXTURE9 *pTexture;
 	} Material;
 
+//private:
+//	const static int MAX_FILE = 256;
+//	const static int MAX_NAME = 256;
+//
+//public:
+//
+//	//Xファイル情報
+//	struct FileData
+//	{
+//		LPD3DXMESH pMesh;					//メッシュ（頂点情報）へのポインタ
+//		LPD3DXBUFFER pBuffMat;				//マテリアルへのポインタ
+//		int *pIdexTexture;					//テクスチャ番号
+//		DWORD dwNumMat;						//マテリアルの数
+//		D3DXVECTOR3 vtxMin;					//最小
+//		D3DXVECTOR3 vtxMax;					//最大
+//		LPDIRECT3DTEXTURE9 *pTexture;
+//	};
+//
+//private:
+//	// ファイル読み込み情報
+//	struct FileInfo
+//	{
+//		char aFileName[MAX_NAME];	// ファイル名
+//		FileData filedata;			// ファイル情報
+//	};
+
+public:
 
 	CXFile();		//コンストラクタ
 	~CXFile();	//デストラクタ
+
+	//int Regist(const char *pFilename);				//テクスチャの番号指定
+	//void Unload(void);		//テクスチャ破棄処理
+	//void SetSizeVtxMax(int nIdx, D3DXVECTOR3 vtxMax) { m_apModelFileData[nIdx]->filedata.vtxMax = vtxMax; }
+	//void SetSizeVtxMin(int nIdx, D3DXVECTOR3 vtxMin) { m_apModelFileData[nIdx]->filedata.vtxMin = vtxMin; }
+
+	//FileData *SetAddress(int nIdx);
+	//static int GetNumAll(void) { return m_nNumAll; }
+	//D3DXVECTOR3 GetMax(int nIdx) { return m_apModelFileData[nIdx]->filedata.vtxMax; }
+	//D3DXVECTOR3 GetMin(int nIdx) { return m_apModelFileData[nIdx]->filedata.vtxMin; }
+	//char *GetFileName(int nIdx) { return &m_apModelFileData[nIdx]->aFileName[0]; }
 
 	HRESULT Load(void);		//テクスチャ読み込み処理
 	void Unload(void);		//テクスチャ破棄処理
@@ -49,6 +87,12 @@ public:
 	LPD3DXMESH GetMeshAddress(int nIdx);		//メッシュの情報取得
 
 private:
+
+	//HRESULT FileLoad(int nIdx);
+
+	//FileInfo *m_apModelFileData[MAX_FILE];	// モデルのファイル情報のポインタ
+	//static int m_nNumAll;	// 読み込み総数
+
 	static int m_nNumAll;		//テクスチャの数
 	static const char *m_apFilename[MAX_TEX];		//モデルのテキストファイル名
 	static Material m_Material[MAX_TEX];			//マテリアルの情報
