@@ -593,6 +593,11 @@ void CPlayer::Walk(void)
 		m_bMove = true;			//•à‚¢‚Ä‚é‚©‚Ì”»’è
 	}
 
+	if (pInputKeyboard->GetTrigger(DIK_O) == true)
+	{
+		m_pMotion->Set(m_pMotion->MOTOIN_ATTACK);
+	}
+
 	D3DXVECTOR3 move = D3DXVECTOR3(-sinf(m_rot.y) * 10.0f, 0.0f, -cosf(m_rot.y) * 10.0f);
 
 	if (pInputKeyboard->GetTrigger(DIK_H) == true)
