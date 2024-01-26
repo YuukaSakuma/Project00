@@ -27,6 +27,10 @@ public:
 	void Update(void);		//XVˆ—
 	void Draw(void);		//•`‰æˆ—
 
+	/*void SetCol(D3DXCOLOR col) { m_col = col; }
+	D3DXCOLOR GetCol(void) { return m_col; }
+*/
+
 private:
 
 	D3DXVECTOR3 m_move;		//ˆÚ“®—Ê

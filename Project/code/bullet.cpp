@@ -90,13 +90,6 @@ CBullet *CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move,Bull
 //==============================================================
 HRESULT CBullet::Init(void)
 {
-	//CTexture * pTexture = CManager::Get()->GetTexture();
-
-	//m_nldxTexture = pTexture->Regist("data\\TEXTURE\\ball000.png");
-
-	////テクスチャの割り当て
-	//BindTexture(m_nldxTexture);
-
 	//オブジェクト2Dの初期化処理
 	CBillboard::Init();
 
@@ -145,8 +138,6 @@ void CBullet::Update(void)
 	////サイズの設定
 	//SetSize(WIDTH, HEIGHT, VERTICL_BILL);
 
-	//エフェクトの生成
-	CEffect::Create(m_pos, D3DXVECTOR3( 0.0f, 0.0f, 0.0f ), D3DXCOLOR( 1.0f, 1.0f, 1.0f, 0.5 ), EFFECT_RADIUS, EFFECT_LIFE);
 
 	//寿命を減算
 	m_nLife--;
@@ -608,6 +599,11 @@ void CBulletA::Uninit(void)
 void CBulletA::Update(void)
 {
 	CBullet::Update();
+
+	D3DXVECTOR3 pos = GetPosition();
+
+	//エフェクトの生成
+	CEffect::Create(pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f), EFFECT_RADIUS, EFFECT_LIFE);
 }
 
 //==============================================================
@@ -667,6 +663,11 @@ void CBulletB::Uninit(void)
 void CBulletB::Update(void)
 {
 	CBullet::Update();
+
+	D3DXVECTOR3 pos = GetPosition();
+
+	//エフェクトの生成
+	CEffect::Create(pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f), EFFECT_RADIUS, EFFECT_LIFE);
 }
 
 //==============================================================

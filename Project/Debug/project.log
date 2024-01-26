@@ -1,4 +1,3 @@
-﻿  player.cpp
-cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
+﻿  bullet.cpp
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\Debug\project.exe
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\Debug\project.pdb (Full PDB)

@@ -39,6 +39,9 @@ public:
 	void SetRadius(float fRadius);
 	void SetVtx(int nPattern, TYPE type);
 
+	void SetCol(D3DXCOLOR col);
+	D3DXCOLOR GetCol(void) { return m_col; }
+
 private:
 
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;				//頂点バッファへのポインタ
@@ -46,6 +49,7 @@ private:
 	D3DXVECTOR3 m_pos;								//位置
 	D3DXVECTOR3 m_rot;								//向き
 	D3DXVECTOR3 m_move;								//移動量
+	D3DXCOLOR m_col;
 
 	int m_nldxTexture;								//テクスチャ番号
 };

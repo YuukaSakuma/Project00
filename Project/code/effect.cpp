@@ -78,6 +78,8 @@ HRESULT CEffect::Init(void)
 
 	CObject::SetType(TYPE_EFFECT);
 
+	SetCol(m_col);
+
 	//半径の設定
 	//SetRadius(m_fRadius);
 
@@ -125,7 +127,6 @@ void CEffect::Update(void)
 		//位置の設定
 		SetPosition(pos);
 	}
-
 	//オブジェクト2Dの更新処理d
 	CBillboard::Update();
 }

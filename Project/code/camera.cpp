@@ -12,7 +12,7 @@
 #include"game.h"
 
 //マクロ定義
-#define LENGTH	(1000.0f)			//長さ
+#define LENGTH	(800.0f)			//長さ
 #define POSVX	(0.0f)				//視点X
 #define POSVY	(100.0f)				//視点Y
 #define POSVZ	(-100.0f)			//視点Z
