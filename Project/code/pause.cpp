@@ -68,7 +68,7 @@ CPause *CPause::Create(void)
 //==============================================================
 HRESULT CPause::Init(void)
 {
-	CTexture *pTexture = CManager::Get()->GetTexturet();
+	CTexture *pTexture = CManager::Get()->GetTexture();
 
 	//テクスチャの読み込み
 	m_nIdxTexture[0] = pTexture->Regist("data\\TEXTURE\\pause00.png");

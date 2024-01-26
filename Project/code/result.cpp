@@ -44,7 +44,7 @@ HRESULT CResult::Init(void)
 
 	// ƒƒS‚Ì¶¬
 	CObject2D *p = CObject2D::Create();
-	p->BindTexture(CManager::Get()->GetTexturet()->Regist("data\\TEXTURE\\result.png"));
+	p->BindTexture(CManager::Get()->GetTexture()->Regist("data\\TEXTURE\\result.png"));
 	p->SetPosition(D3DXVECTOR3(600.0f, SCREEN_HEIGHT * 0.15f, 0.0f));
 	p->SetSize(400, 150);
 

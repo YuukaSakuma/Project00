@@ -57,7 +57,7 @@ HRESULT CObject2D::Init(void)
 	CRenderer *pRenderer = CManager::Get()->GetRenderer();
 	VERTEX_2D *pVtx;									//頂点情報へのポインタ
 
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	BindTexture(m_nldx);
 
@@ -182,7 +182,7 @@ void CObject2D::Draw(void)
 	LPDIRECT3DDEVICE9 pDevice;
 	CRenderer *pRenderer = CManager::Get()->GetRenderer();
 
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	//デバイスの取得
 	pDevice = pRenderer->GetDevice();

@@ -547,7 +547,7 @@ CCamera *CManager::GetCamera(void)
 //==============================================================
 //テクスチャの取得
 //==============================================================
-CTexture * CManager::GetTexturet(void)
+CTexture * CManager::GetTexture(void)
 {
 	return m_pTexture;
 }

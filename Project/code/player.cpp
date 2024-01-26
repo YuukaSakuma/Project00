@@ -20,33 +20,28 @@
 #include"life.h"
 #include"game.h"
 #include"score.h"
-
+#include"bullet.h"
+ 
 //マクロ定義
 #define WIDTH (50.0f)	//横幅
 #define HEIGHT (80.0f)	//高さ
 #define LIFE (1)		//体力
-#define SPEED (2.0f)		//素早さ
-#define PLAYER_JUMP (80.0f)
-#define PLAYER_GRAVITY (-4.0f)
+#define SPEED (0.8f)		//素早さ
+#define PLAYER_JUMP (25.0f)
+#define PLAYER_GRAVITY (-2.0f)
 
 //静的メンバ変数
-char *CPlayer::m_apFileName[15] =
+char *CPlayer::m_apFileName[9] =
 {
 	"data\\MODEL\\player\\00_waist.x",
-	"data\\MODEL\\player\\01_chest.x",
+	"data\\MODEL\\player\\01_body.x",
 	"data\\MODEL\\player\\02_head.x",
-	"data\\MODEL\\player\\03_UParm_L.x",
-	"data\\MODEL\\player\\04_FOarm_L.x",
-	"data\\MODEL\\player\\05_hand_L.x",
-	"data\\MODEL\\player\\06_UParm_R.x",
-	"data\\MODEL\\player\\07_FOarm_R.x",
-	"data\\MODEL\\player\\08_hand_R.x",
-	"data\\MODEL\\player\\09_thigh_L.x",
-	"data\\MODEL\\player\\10_legs_L.x",
-	"data\\MODEL\\player\\11_foot_L.x",
-	"data\\MODEL\\player\\12_thigh_R.x",
-	"data\\MODEL\\player\\13_legs_R.x",
-	"data\\MODEL\\player\\14_foot_R.x",
+	"data\\MODEL\\player\\03_arm_L.x",
+	"data\\MODEL\\player\\04_arm_R.x",
+	"data\\MODEL\\player\\05_foot_L.x",
+	"data\\MODEL\\player\\06_foot_R.x",
+	"data\\MODEL\\player\\07_tail.x",
+	"data\\MODEL\\player\\sword.x",
 };
 
 //==============================================================
@@ -66,7 +61,7 @@ CPlayer::CPlayer()
 
 	m_state = CObjectX::STATE_NONE;		//通常状態にする
 
-	for (int nCntPlayer = 0; nCntPlayer < 15; nCntPlayer++)
+	for (int nCntPlayer = 0; nCntPlayer < 9; nCntPlayer++)
 	{
 		m_apModel[nCntPlayer] = NULL;		//プレイヤー(パーツ)へのポインタ
 	}
@@ -100,7 +95,7 @@ CPlayer::CPlayer(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 	m_state = CObjectX::STATE_NONE;		//通常状態にする
 
 
-	for (int nCntPlayer = 0; nCntPlayer < 15; nCntPlayer++)
+	for (int nCntPlayer = 0; nCntPlayer < 9; nCntPlayer++)
 	{
 		m_apModel[nCntPlayer] = NULL;		//プレイヤー(パーツ)へのポインタ
 	}
@@ -158,7 +153,7 @@ HRESULT CPlayer::Init(void)
 	//CLife *pLife = CGame::GetLife();
 
 	//プレイヤーの生成（全パーツ分）
-	for (int nCntModel = 0; nCntModel < 15; nCntModel++)
+	for (int nCntModel = 0; nCntModel < 9; nCntModel++)
 	{
 		m_apModel[nCntModel] = m_apModel[nCntModel]->Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), m_apFileName[nCntModel]);
 	}
@@ -175,17 +170,17 @@ HRESULT CPlayer::Init(void)
 		if (m_pMotion != NULL)
 		{
 			//モーションの初期化・生成
-			m_pMotion->SetModel(&m_apModel[0], 15);
-			m_pMotion->Init("data\\TXT\\player.txt",15);
+			m_pMotion->SetModel(&m_apModel[0], 9);
+			m_pMotion->Init("data\\TXT\\player.txt",9);
 		}
 	}
 
 	//最大値・最小値代入
-	for (int nCntPlayer = 0; nCntPlayer < 15; nCntPlayer++)
+	for (int nCntPlayer = 0; nCntPlayer < 9; nCntPlayer++)
 	{
 		//最大値Y
 		if ((nCntPlayer <= 0 && nCntPlayer <= 1) ||
-			(nCntPlayer <= 11 && nCntPlayer <= 13))
+			(nCntPlayer <= 5 && nCntPlayer <= 6))
 		{
 			m_max.y += m_apModel[nCntPlayer]->GetSizeMax().y;		//最大値加算
 		}
@@ -235,7 +230,7 @@ HRESULT CPlayer::Init(void)
 //==============================================================
 void CPlayer::Uninit(void)
 {
-	for (int nCntPlayer = 0; nCntPlayer < 15; nCntPlayer++)
+	for (int nCntPlayer = 0; nCntPlayer < 9; nCntPlayer++)
 	{
 		if (m_apModel[nCntPlayer] != NULL)
 		{//使用されてるとき
@@ -346,7 +341,7 @@ void CPlayer::Draw(void)
 	//ワールドマトリックスの設定
 	pDevice->SetTransform(D3DTS_WORLD, &m_mxtWorld);
 
-	for (int nCntMat = 0; nCntMat < 15; nCntMat++)
+	for (int nCntMat = 0; nCntMat < 9; nCntMat++)
 	{
 		m_apModel[nCntMat]->Draw();
 	}
@@ -365,12 +360,17 @@ void CPlayer::Control(void)
 	m_fRotMove = rot.y;
 
 	Walk();
+
+	//if (pInputKeyboard->GetTrigger(DIK_O) == true)
+	//{
+	//	m_pMotion->Set(m_pMotion->MOTOIN_ATTACK);
+	//}
+
 	//向きの補正処理
 	RotCorrection();
 
 	//モーションの設定
 	SetMotion();
-
 
 	if ((m_move.x <= 0.8f && m_move.x >= -0.8f) && (m_move.y <= 0.8f && m_move.y >= -0.8f) && (m_move.z <= 0.8f && m_move.z >= -0.8f))
 	{//動いていないとき
@@ -592,6 +592,18 @@ void CPlayer::Walk(void)
 
 		m_bMove = true;			//歩いてるかの判定
 	}
+
+	D3DXVECTOR3 move = D3DXVECTOR3(-sinf(m_rot.y) * 10.0f, 0.0f, -cosf(m_rot.y) * 10.0f);
+
+	if (pInputKeyboard->GetTrigger(DIK_H) == true)
+	{
+		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_A);
+	}
+	else if (pInputKeyboard->GetTrigger(DIK_J) == true)
+	{
+		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_B);
+	}
+	
 }
 
 //==============================================================

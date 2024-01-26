@@ -1,20 +1,52 @@
 ﻿  Xfile.cpp
+  bg.cpp
+  billboard.cpp
+  block.cpp
   blockX.cpp
+  bullet.cpp
+  camera.cpp
+  debugproc.cpp
   edit.cpp
+  effect.cpp
+  explosion.cpp
+  fade.cpp
+  field.cpp
   game.cpp
   itemX.cpp
+  life.cpp
+  light.cpp
+  main.cpp
   manager.cpp
   map.cpp
+  コンパイル中...
   model.cpp
   modelHierarchy.cpp
   motion.cpp
+  multibg.cpp
+  number.cpp
+  object.cpp
+  object2D.cpp
+  object3D.cpp
   objectX.cpp
+  particle.cpp
+  pause.cpp
   player.cpp
+  polygon.cpp
+  ranking.cpp
+  renderer.cpp
   result.cpp
+  score.cpp
+  texture.cpp
+  time.cpp
+  title.cpp
+  コンパイル中...
+  titleTex.cpp
+  tutrial.cpp
+  wall.cpp
   コード生成しています。
-  0 of 471 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  31 of 501 functions ( 6.2%) were compiled, the rest were copied from previous compilation.
+    17 functions were new in current compilation
+    40 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\project.exe
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\project.pdb (Full PDB)

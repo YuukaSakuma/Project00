@@ -53,7 +53,7 @@ private:
 	void Adjust(void);
 
 
-	static char *m_apFileName[15];		//ファイル名
+	static char *m_apFileName[9];		//ファイル名
 
 	D3DXVECTOR3 m_pos;				//位置
 	D3DXVECTOR3 m_posOld;			//前回の位置
@@ -69,7 +69,7 @@ private:
 
 	int m_nCntDamage;
 
-	CModelHier *m_apModel[15];		//モデル(パーツ)へのポインタ
+	CModelHier *m_apModel[9];		//モデル(パーツ)へのポインタ
 
 	int m_nNumModel;		//モデル(パーツ)の総数
 	bool m_bJump;			//ジャンプしたかの判定

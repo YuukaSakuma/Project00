@@ -72,7 +72,7 @@ CTitleTex *CTitleTex::Create(void)
 //==============================================================
 HRESULT CTitleTex::Init(void)
 {
-	CTexture *pTexture = CManager::Get()->GetTexturet();
+	CTexture *pTexture = CManager::Get()->GetTexture();
 
 	//テクスチャの読み込み
 	m_nIdxTexture[0] = pTexture->Regist("data\\TEXTURE\\title_logo00.png");

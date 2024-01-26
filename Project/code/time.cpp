@@ -62,7 +62,7 @@ CTime *CTime::Create(D3DXVECTOR3 pos)
 //==============================================================
 HRESULT CTime::Init(void)
 {
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	m_nldxTexture = pTexture->Regist("data\\TEXTURE\\number.png");
 

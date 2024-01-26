@@ -86,7 +86,7 @@ public:
 	 CPlayer * GetPlayerModel(void);		//プレイヤーの取得
 	 CCamera * GetCamera(void);				//カメラの取得
 	 CLight * GetLight(void);					//ライトの取得
-	 CTexture * GetTexturet(void);			//テクスチャの取得
+	 CTexture * GetTexture(void);			//テクスチャの取得
 	 CXFile *GetMaterial(void) { return m_pMaterial; }		//マテリアルの取得
 	 CDebugProc *GetDebugProc(void);			//デバッグプロックの取得
 	 CFade *GetFade(void);

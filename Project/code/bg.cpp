@@ -60,7 +60,7 @@ CBg *CBg::Create(void)
 //==============================================================
 HRESULT CBg::Init(void)
 {
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	m_nldxTexture = pTexture->Regist("data\\TEXTURE\\bg100.png");
 

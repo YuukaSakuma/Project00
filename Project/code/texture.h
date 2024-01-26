@@ -40,6 +40,8 @@ public:
 		TYPE_TEX_TUTORIAL,		//チュートリアル
 		TYPE_TEX_RANKINGLOGO,	//ランキングロゴ
 		TYPE_TEX_RESULT,		//リザルト
+		TYPE_TEX_BULLET,		//リザルト
+		TYPE_TEX_BULLET2,		//リザルト
 
 		TYPE_TEX_MAX
 	}TYPE_TEX;

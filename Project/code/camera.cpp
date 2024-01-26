@@ -93,7 +93,7 @@ void CCamera::Update(void)
 	}
 
 	//‘SŽ‹“_‚ÌˆÚ“®
-	MoveA();
+	//MoveA();
 
 	//Ž‹“_‚ÌˆÚ“®
 	MoveV();

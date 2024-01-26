@@ -74,7 +74,7 @@ CPolygon *CPolygon::Create(TYPE type, D3DXVECTOR3 pos)
 //==============================================================
 HRESULT CPolygon::Init(void)
 {
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	//オブジェクト2Dの初期化処理
 	CObject3D::Init(); 

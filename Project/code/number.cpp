@@ -52,7 +52,7 @@ CNumber *CNumber::Create(D3DXVECTOR3 pos, float fWidth, float fHeight)
 //==============================================================
 HRESULT CNumber::Init(D3DXVECTOR3 pos, float fWidth, float fHeight)
 {
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	m_nldxTexture = pTexture->Regist("data\\TEXTURE\\number.png");
 

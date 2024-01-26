@@ -88,7 +88,7 @@ CLife *CLife::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 //==============================================================
 HRESULT CLife::Init(void)
 {
-	CTexture *pTexture = CManager::Get()->GetTexturet();
+	CTexture *pTexture = CManager::Get()->GetTexture();
 
 	//テクスチャの読み込み
 	m_nIdxTexture[0] = pTexture->Regist("data\\TEXTURE\\life.jpg");

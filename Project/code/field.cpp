@@ -71,7 +71,7 @@ CField *CField::Create(TYPE type, D3DXVECTOR3 pos)
 HRESULT CField::Init(void)
 {
 	CObject3D *p = CObject3D::Create();
-	p->BindTexture(CManager::Get()->GetTexturet()->Regist("data\\TEXTURE\\meadow.jpg"));
+	p->BindTexture(CManager::Get()->GetTexture()->Regist("data\\TEXTURE\\meadow.jpg"));
 	p->SetPosition(m_pos);
 	p->SetSize(WIDTH, HEIGHT, VERTICL);
 

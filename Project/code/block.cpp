@@ -83,7 +83,7 @@ CBlock *CBlock::Create(TYPE type, D3DXVECTOR3 pos)
 //==============================================================
 HRESULT CBlock::Init(void)
 {
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	m_nldxTexture = pTexture->Regist("data\\TEXTURE\\block000.png");
 

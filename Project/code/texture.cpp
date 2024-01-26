@@ -31,6 +31,8 @@ const char *CTexture::apTexture[TYPE_TEX_MAX] =
 	"data\\TEXTURE\\tutrial000.png",
 	"data\\TEXTURE\\ranking.png",
 	"data\\TEXTURE\\result.png",
+	"data\\TEXTURE\\ball000.png",
+	"data\\TEXTURE\\bullet000.png",
 };
 
 //==============================================================
@@ -105,7 +107,7 @@ int CTexture::Regist(const char *pFilename)
 
 	int nNumOld = m_nNumAll;
 
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	for (int nCntTex = 0; nCntTex < m_nNumAll; nCntTex++)
 	{

@@ -70,7 +70,7 @@ HRESULT CBillboard::Init(void)
 
 	VERTEX_3D *pVtx;
 
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 	
 	//頂点バッファの生成
 	pDevice->CreateVertexBuffer(sizeof(VERTEX_3D) * 4,
@@ -142,7 +142,7 @@ void CBillboard::Update(void)
 void CBillboard::Draw(void)
 {
 	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
-	CTexture *pTexture = CManager::Get()->GetTexturet();		//テクスチャの取得
+	CTexture *pTexture = CManager::Get()->GetTexture();		//テクスチャの取得
 
 	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
 	D3DXMATRIX mtxView;				//ビューマトリックス取得用

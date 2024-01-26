@@ -136,7 +136,7 @@ void CObject3D::Draw(void)
 	LPDIRECT3DDEVICE9 pDevice;
 	CRenderer *pRenderer = CManager::Get()->GetRenderer();
 
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	//デバイスの取得
 	pDevice = pRenderer->GetDevice();

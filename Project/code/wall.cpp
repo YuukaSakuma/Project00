@@ -76,7 +76,7 @@ CWall *CWall::Create(TYPE type, D3DXVECTOR3 pos)
 //==============================================================
 HRESULT CWall::Init(void)
 {
-	CTexture * pTexture = CManager::Get()->GetTexturet();
+	CTexture * pTexture = CManager::Get()->GetTexture();
 
 	m_nldxTexture = pTexture->Regist("data\\TEXTURE\\wall00.jpg");
 

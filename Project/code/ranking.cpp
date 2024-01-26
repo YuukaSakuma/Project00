@@ -63,7 +63,7 @@ HRESULT CRanking::Init(void)
 
 	// ƒƒS‚Ì¶¬
 	CObject2D *p = CObject2D::Create();
-	p->BindTexture(CManager::Get()->GetTexturet()->Regist("data\\TEXTURE\\ranking.png"));
+	p->BindTexture(CManager::Get()->GetTexture()->Regist("data\\TEXTURE\\ranking.png"));
 	p->SetPosition(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.15f, 0.0f));
 	p->SetSize(400, 150);
 
@@ -73,7 +73,7 @@ HRESULT CRanking::Init(void)
 		if (m_apScore[nCntRank] == NULL)
 		{
 			p = CObject2D::Create();
-			p->BindTexture(CManager::Get()->GetTexturet()->Regist("data\\TEXTURE\\rank.png"));
+			p->BindTexture(CManager::Get()->GetTexture()->Regist("data\\TEXTURE\\rank.png"));
 			p->SetPosition(D3DXVECTOR3(350.0f, 250.0f + nCntRank * 100.0f, 0.0f));
 			p->SetSize(80, 50);
 			p->SetVtx(nCntRank, 0.2f);

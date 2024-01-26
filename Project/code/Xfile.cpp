@@ -300,7 +300,7 @@ LPD3DXMESH CXFile::GetMeshAddress(int nIdx)
 //HRESULT CXFile::FileLoad(int nIdx)
 //{
 //	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();;		//デバイスへのポインタ
-//	CTexture *pTexture = CManager::Get()->GetTexturet();	// テクスチャへのポインタ
+//	CTexture *pTexture = CManager::Get()->GetTexture();	// テクスチャへのポインタ
 //	D3DXMATERIAL *pMat;	//マテリアルデータへのポインタ
 //	int nNumVtx;		//頂点数
 //	DWORD dwSizeFVF;	//頂点フォーマットのサイズ
