@@ -12,11 +12,11 @@
 #include"game.h"
 
 //マクロ定義
-#define LENGTH	(800.0f)			//長さ
+#define LENGTH	(500.0f)			//長さ
 #define POSVX	(0.0f)				//視点X
-#define POSVY	(100.0f)				//視点Y
+#define POSVY	(100.0f)			//視点Y
 #define POSVZ	(-100.0f)			//視点Z
-#define POSRX	(0.0f)			//注視点X
+#define POSRX	(0.0f)				//注視点X
 #define POSRY	(100.0f)			//注視点X
 #define POSRZ	(0.0f)				//注視点X
 #define VECUX	(0.0f)				//上方向ベクトルX
@@ -319,7 +319,7 @@ void CCamera::Move(void)
 	//posRDest = D3DXVECTOR3(pos.x - sinf(rot.y) * 30.0f, pos.y + 50.0f + 40.0f , pos.z - cosf(rot.y) * 30.0f);
 
 	m_posRDest.x = pPlayer->GetPosition().x  - sinf(pPlayer->GetRotation().y) * 30.0f;
-	m_posRDest.y = pPlayer->GetPosition().y + 200.0f;
+	m_posRDest.y = pPlayer->GetPosition().y + 100.0f;
 	m_posRDest.z = pPlayer->GetPosition().z + cosf(pPlayer->GetRotation().y) * 30.0f;
 
 	//目的の視点を設定
@@ -371,7 +371,7 @@ void CCamera::Setting(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot)
 	m_rot.y = -rot.y + (D3DX_PI * 0.5f);
 
 	//目的の注視点の座標を取得
-	m_posR = D3DXVECTOR3(pos.x - sinf(rot.y) * 30.0f, pos.y + 50.0f, pos.z - cosf(rot.y) * 30.0f);
+	m_posR = D3DXVECTOR3(pos.x - sinf(rot.y) * 30.0f, pos.y + 0.0f, pos.z - cosf(rot.y) * 30.0f);
 
 	//目的の視点の座標を獲得
 	m_posV = D3DXVECTOR3(
