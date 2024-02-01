@@ -36,7 +36,6 @@ CEnemy::CEnemy()
 	m_posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//前回の位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//向き
 	m_nLife = LIFE;								//寿命
-	//m_BType = TYPE_A;
 }
 
 //==============================================================
@@ -75,7 +74,7 @@ CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 HRESULT CEnemy::Init(void)
 {
 	//オブジェクト2Dの初期化処理
-	CObjectX::Init();
+	CObject::Init();
 
 	////種類の設定
 	//CObject::SetType(CObject::TYPE_BULLET);
@@ -89,7 +88,7 @@ HRESULT CEnemy::Init(void)
 void CEnemy::Uninit(void)
 {
 	//オブジェクト2Dの終了処理
-	CObjectX::Uninit();
+	CObject::Uninit();
 }
 
 //==============================================================
@@ -105,7 +104,7 @@ void CEnemy::Update(void)
 
 
 	//オブジェクト2Dの更新処理
-	CObjectX::Update();
+	CObject::Update();
 }
 
 //==============================================================
@@ -114,5 +113,5 @@ void CEnemy::Update(void)
 void CEnemy::Draw(void)
 {
 	//オブジェクト2Dの描画処理
-	CObjectX::Draw();
+	CObject::Draw();
 }

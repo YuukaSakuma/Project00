@@ -11,7 +11,7 @@
 //==============================================================
 //弾クラス
 //==============================================================
-class CEnemy : public CObjectX
+class CEnemy : public CObject
 {
 public:
 
@@ -41,4 +41,53 @@ private:
 	D3DXVECTOR3 m_pos;		//位置
 	D3DXVECTOR3 m_posOld;	//位置(前回)
 };
+
+//class CEnemySwordsman :public CEnemy
+//{
+//public:
+//
+//	CEnemySwordsman();													//コンストラクタ
+//	~CEnemySwordsman();													//デストラクタ
+//
+//	HRESULT Init(void);						//初期化処理
+//	void Uninit(void);						//終了処理
+//	void Update(void);						//更新処理
+//	void Draw(void);						//描画処理
+//
+//private:
+//
+//
+//};
+//
+//class CEnemyWitch :public CEnemy
+//{
+//public:
+//
+//	CEnemyWitch();													//コンストラクタ
+//	~CEnemyWitch();													//デストラクタ
+//
+//	HRESULT Init(void);						//初期化処理
+//	void Uninit(void);						//終了処理
+//	void Update(void);						//更新処理
+//	void Draw(void);						//描画処理
+//
+//private:
+//
+//
+//};
+
+//class CEnemyBoss : public CEnemy
+//{
+//public:
+//	CEnemyBoss();
+//	~CEnemyBoss();
+//
+//	HRESULT Init(void);						//初期化処理
+//	void Uninit(void);						//終了処理
+//	void Update(void);						//更新処理
+//	void Draw(void);						//描画処理
+//
+//private:
+//
+//};
 #endif // !_BULLET_H_
