@@ -1,18 +1,20 @@
-﻿  blockX.cpp
+﻿  bullet.cpp
   camera.cpp
-  character.cpp
   edit.cpp
   enemy.cpp
   game.cpp
   itemX.cpp
+  life.cpp
   manager.cpp
   map.cpp
-  model.cpp
+  objectX.cpp
   player.cpp
+  tutrial.cpp
+  wall.cpp
   コード生成しています。
-  16 of 511 functions ( 3.1%) were compiled, the rest were copied from previous compilation.
-    8 functions were new in current compilation
-    60 functions had inline decision re-evaluated but remain unchanged
+  85 of 515 functions (16.5%) were compiled, the rest were copied from previous compilation.
+    23 functions were new in current compilation
+    134 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\project.exe
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\project.pdb (Full PDB)

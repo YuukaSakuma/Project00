@@ -154,8 +154,6 @@
   <ItemGroup>
     <ClCompile Include="code\bg.cpp" />
     <ClCompile Include="code\billboard.cpp" />
-    <ClCompile Include="code\block.cpp" />
-    <ClCompile Include="code\blockX.cpp" />
     <ClCompile Include="code\bullet.cpp" />
     <ClCompile Include="code\camera.cpp" />
     <ClCompile Include="code\character.cpp" />
@@ -204,8 +202,6 @@
   <ItemGroup>
     <ClInclude Include="code\bg.h" />
     <ClInclude Include="code\billboard.h" />
-    <ClInclude Include="code\block.h" />
-    <ClInclude Include="code\blockX.h" />
     <ClInclude Include="code\bullet.h" />
     <ClInclude Include="code\camera.h" />
     <ClInclude Include="code\character.h" />

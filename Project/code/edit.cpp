@@ -10,7 +10,6 @@
 #include"manager.h"
 #include"objectX.h"
 #include"model.h"
-#include"blockX.h"
 
 #define MODEL (1)
 

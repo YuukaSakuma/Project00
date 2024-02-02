@@ -63,10 +63,7 @@ private:
 	D3DXVECTOR3 m_min;				//最小値
 	D3DXMATRIX m_mxtWorld;			//ワールドマトリックス
 
-	D3DXVECTOR3 m_Wpos;				//マップ位置
-
 	STATE m_state;					//種類
-
 	int m_nCntDamage;
 
 	CModelHier *m_apModel[9];		//モデル(パーツ)へのポインタ

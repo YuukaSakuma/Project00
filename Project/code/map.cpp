@@ -9,7 +9,6 @@
 #include"input.h"
 #include"player.h"
 #include"manager.h"
-#include"blockX.h"
 #include"field.h"
 #include"model.h"
 #include"wall.h"

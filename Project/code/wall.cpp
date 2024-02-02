@@ -34,12 +34,6 @@ CWall::CWall(TYPE type,D3DXVECTOR3 pos)
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//移動量
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//向き
 
-	////オブジェクト2D位置の設定
-	//CObject3D::SetPosition(pos);
-
-	////エネミー位置の設定
-	//CEnemy::SetPosition(pos);
-
 	//種類の設定
 	SetType(type);
 }

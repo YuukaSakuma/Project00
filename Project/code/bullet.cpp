@@ -50,7 +50,7 @@ CBullet::~CBullet()
 //==============================================================
 //弾の生成処理
 //==============================================================
-CBullet *CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move,BulletType btype)
+CBullet *CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move,BulletType btype,TYPE type)
 {
 	CBullet *pBullet = NULL;
 
@@ -69,6 +69,12 @@ CBullet *CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move,Bull
 			pBullet = new CBulletB;
 
 			break;
+
+		case CBullet::TYPE_C:
+
+			pBullet = new CBulletC;
+
+			break;
 		
 		}
 
@@ -80,6 +86,8 @@ CBullet *CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move,Bull
 		pBullet->SetRotation(rot);
 
 		pBullet->SetMove(move);
+
+		pBullet->SetType(type);
 	}
 
 	return pBullet;
@@ -134,10 +142,6 @@ void CBullet::Update(void)
 
 		return;
 	}
-
-	////サイズの設定
-	//SetSize(WIDTH, HEIGHT, VERTICL_BILL);
-
 
 	//寿命を減算
 	m_nLife--;
@@ -674,6 +678,70 @@ void CBulletB::Update(void)
 //弾の描画処理
 //==============================================================
 void CBulletB::Draw(void)
+{
+	//オブジェクト2Dの描画処理
+	CBullet::Draw();
+}
+
+//==============================================================
+//コンストラクタ
+//==============================================================
+CBulletC::CBulletC()
+{
+
+}
+
+//==============================================================
+//デストラクタ
+//==============================================================
+CBulletC::~CBulletC()
+{
+
+}
+
+//==============================================================
+//弾の初期化処理
+//==============================================================
+HRESULT CBulletC::Init(void)
+{
+	CTexture * pTexture = CManager::Get()->GetTexture();
+
+	m_nldxTexture = pTexture->Regist("data\\TEXTURE\\ball000.png");
+
+	//テクスチャの割り当て
+	BindTexture(m_nldxTexture);
+
+	CBullet::Init();
+
+	return S_OK;
+}
+
+//==============================================================
+//弾の終了処理
+//==============================================================
+void CBulletC::Uninit(void)
+{
+	//オブジェクト2Dの終了処理
+	CBillboard::Uninit();
+}
+
+//==============================================================
+//弾の更新処理
+//==============================================================
+void CBulletC::Update(void)
+{
+	CBullet::Update();
+
+	D3DXVECTOR3 pos = GetPosition();
+
+	//エフェクトの生成
+	CEffect::Create(pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), EFFECT_RADIUS, EFFECT_LIFE);
+}
+
+//==============================================================
+//弾の描画処理
+//==============================================================
+void CBulletC::Draw(void)
 {
 	//オブジェクト2Dの描画処理
 	CBullet::Draw();

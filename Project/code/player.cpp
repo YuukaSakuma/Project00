@@ -25,7 +25,7 @@
 //マクロ定義
 #define WIDTH (50.0f)	//横幅
 #define HEIGHT (80.0f)	//高さ
-#define LIFE (1)		//体力
+#define LIFE (10000000)		//体力
 #define SPEED (0.8f)		//素早さ
 #define PLAYER_JUMP (25.0f)
 #define PLAYER_GRAVITY (-2.0f)
@@ -55,7 +55,6 @@ CPlayer::CPlayer()
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//向き
 	m_max = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//モデルの最大値
 	m_min = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//モデルの最小値
-	m_Wpos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//マップの座標
 
 	m_nCntDamage = 0;		//ダメージカウンター
 
@@ -88,7 +87,6 @@ CPlayer::CPlayer(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			//移動量
 	m_max = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			//モデルの最大値
 	m_min = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			//モデルの最小値
-	m_Wpos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_nCntDamage = 0;		//ダメージカウンター
 
@@ -602,11 +600,11 @@ void CPlayer::Walk(void)
 
 	if (pInputKeyboard->GetTrigger(DIK_H) == true)
 	{
-		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_A);
+		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_A,CObject::TYPE_PLAYER);
 	}
 	else if (pInputKeyboard->GetTrigger(DIK_J) == true)
 	{
-		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_B);
+		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_B,CObject::TYPE_PLAYER);
 	}
 	
 }

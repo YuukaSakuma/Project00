@@ -7,7 +7,6 @@
 #include"renderer.h"
 #include"game.h"
 #include"player.h"
-#include"blockX.h"
 #include"field.h"
 #include"score.h"
 #include"fade.h"
@@ -18,6 +17,7 @@
 #include"result.h"
 #include"life.h"
 #include"itemX.h"
+#include "enemy.h"
 
 #define START_TIME (180)		//開始時間
 #define START_SCORE (0)			//開始スコア
@@ -62,6 +62,8 @@ HRESULT CGame::Init(void)
 	//m_pMap = CMap::Create();
 
 	CField::Create(CObject::TYPE_NONE, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	CEnemy::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f),CEnemy::ENEMY_WITCH);
 
 	//プレイヤーの生成
 	m_pPlayerModel = CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));

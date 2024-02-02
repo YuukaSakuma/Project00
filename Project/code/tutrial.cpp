@@ -12,7 +12,6 @@
 #include"object2D.h"
 #include"fade.h"
 
-
 //静的メンバ変数
 CPlayer *CTutorial::m_pPlayerModel = NULL;	//プレイヤーの情報
 bool CTutorial::m_bReset = true;					//リセットしたかどうか
@@ -75,12 +74,10 @@ void CTutorial::Update(void)
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) == true )
 	{//ENTERキー押したら
 
-		pSound->Play(pSound->SOUND_LABEL_SE_PICK);
+		//pSound->Play(pSound->SOUND_LABEL_SE_PICK);
 
 	 //チュートリアル画面
-		CManager::Get()->GetFade()->Set(CScene::MODE_GAME);
-		
-		
+		CManager::Get()->GetFade()->Set(CScene::MODE_GAME);		
 	}
 
 	CScene::Update();
