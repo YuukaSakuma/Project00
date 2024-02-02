@@ -307,6 +307,7 @@ void CEnemyWitch::SetState(void)
 {
 	CPlayer *pPlayerModel = CGame::GetPlayerModel();
 
+	float fAngle = 0.0f;
 	D3DXVECTOR3 rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
@@ -330,11 +331,13 @@ void CEnemyWitch::SetState(void)
 
 		//プレイヤーの座標に向けて弾を
 		rot = D3DXVECTOR3(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().y - m_pos.y, pPlayerModel->GetPosition().z - m_pos.z);
+		fAngle = atan2f(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().z - m_pos.z);
+
 
 		//fAngle = atan2f(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().y - m_pos.y);
-		move.x = sinf(pPlayerModel->GetPosition().x) * 10.0f;
+		move.x = sinf(fAngle) * 10.0f;
 		move.y = 0.0f;
-		move.z = cosf(pPlayerModel->GetPosition().z) * 10.0f;
+		move.z = sinf(fAngle) * 10.0f;
 
 
 		CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f * 0.5f, m_pos.z), D3DXVECTOR3(0.0f,0.0f,0.0f), move,CBullet::TYPE_A ,TYPE_ENEMY);
