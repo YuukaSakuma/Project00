@@ -28,7 +28,7 @@ LPD3DXBUFFER CEnemy::m_pBuffMat = NULL;				//マテリアルへのポインタ
 DWORD CEnemy::m_dwNumMat = NULL;
 int CEnemy::m_nNumAll = 0;			//敵の総数
 
-char *CEnemyWitch::m_apFileName[NUM_MODEL_BIRD1] =
+char *CEnemy::m_apFileName[NUM_MODEL_BIRD1] =
 {
 	"data\\MODEL\\enemy\\00_waist.x",
 	"data\\MODEL\\enemy\\01_body.x",
@@ -46,6 +46,11 @@ char *CEnemyWitch::m_apFileName[NUM_MODEL_BIRD1] =
 //==============================================================
 CEnemy::CEnemy()
 {
+	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
+	{
+		m_apModel[nCntPlayer] = nullptr;		//敵(パーツ)へのポインタ
+	}
+
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//移動量
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//移動量
 	m_posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//前回の位置
@@ -64,32 +69,14 @@ CEnemy::~CEnemy()
 //==============================================================
 //弾の生成処理
 //==============================================================
-CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, ENEMY nType)
+CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 {
 	CEnemy *pEnemy = nullptr;
 
 	if (pEnemy == nullptr)
 	{
-		switch (nType)
-		{
-		case ENEMY_WITCH:
 
-			pEnemy = new CEnemyWitch;
-
-			break;
-
-		case ENEMY_SWORDMAN:
-
-			pEnemy = new CEnemyWitch;
-
-			break;
-
-		case ENEMY_BOSS:
-
-			pEnemy = new CEnemyWitch;
-
-			break;
-		}
+		pEnemy = new CEnemy;
 
 		//初期化処理
 		pEnemy->Init();
@@ -106,82 +93,6 @@ CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, ENEMY nType)
 //弾の初期化処理
 //==============================================================
 HRESULT CEnemy::Init(void)
-{
-	////オブジェクト2Dの初期化処理
-	//CObject::Init();
-
-	////種類の設定
-	//CObject::SetType(CObject::TYPE_BULLET);
-
-	return S_OK;
-}
-
-//==============================================================
-//弾の終了処理
-//==============================================================
-void CEnemy::Uninit(void)
-{
-	//オブジェクト（自分自身の破棄）
-	CObject::Release();
-}
-
-//==============================================================
-//弾の更新処理
-//==============================================================
-void CEnemy::Update(void)
-{
-
-}
-
-//==============================================================
-//弾の描画処理
-//==============================================================
-void CEnemy::Draw(void)
-{
-
-	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
-	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
-
-									//ワールドマトリックスを初期化
-	D3DXMatrixIdentity(&m_mtxWorld);
-
-	//向きを反映
-	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
-
-	//位置を反映
-	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
-
-	//ワールドマトリックスの設定
-	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
-	
-}
-
-//==============================================================
-//コンストラクタ
-//==============================================================
-CEnemyWitch::CEnemyWitch()
-{
-	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
-	{
-		m_apModel[nCntPlayer] = nullptr;		//敵(パーツ)へのポインタ
-	}
-}
-
-//==============================================================
-//デストラクタ
-//==============================================================
-CEnemyWitch::~CEnemyWitch()
-{
-
-}
-
-
-//==============================================================
-//弾の初期化処理
-//==============================================================
-HRESULT CEnemyWitch::Init(void)
 {
 	//敵の生成（全パーツ分）
 	for (int nCntModel = 0; nCntModel < NUM_MODEL_BIRD1; nCntModel++)
@@ -238,13 +149,19 @@ HRESULT CEnemyWitch::Init(void)
 		}
 	}
 
+	////オブジェクト2Dの初期化処理
+	//CObject::Init();
+
+	////種類の設定
+	//CObject::SetType(CObject::TYPE_BULLET);
+
 	return S_OK;
 }
 
 //==============================================================
 //弾の終了処理
 //==============================================================
-void CEnemyWitch::Uninit(void)
+void CEnemy::Uninit(void)
 {
 	for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
 	{
@@ -265,45 +182,202 @@ void CEnemyWitch::Uninit(void)
 		m_pMotion = NULL;
 	}
 
-
-	//オブジェクト2Dの終了処理
-	CEnemy::Uninit();
+	//オブジェクト（自分自身の破棄）
+	CObject::Release();
 }
 
 //==============================================================
 //弾の更新処理
 //==============================================================
-void CEnemyWitch::Update(void)
+void CEnemy::Update(void)
 {
+		//モーションの更新処理
+		m_pMotion->Update();
 	
-	//モーションの更新処理
-	m_pMotion->Update();
-
-	SetState();
-
-	//オブジェクト2Dの更新処理
-	CEnemy::Update();
+		//回転量増加(仮)
+		m_rot.y += 0.01f;
+	
+		SetState();
 }
 
 //==============================================================
 //弾の描画処理
 //==============================================================
-void CEnemyWitch::Draw(void)
+void CEnemy::Draw(void)
 {
-	//オブジェクト2Dの描画処理
-	CEnemy::Draw();
+	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
+	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
 
+	//ワールドマトリックスを初期化
+	D3DXMatrixIdentity(&m_mtxWorld);
+
+	//向きを反映
+	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+	//位置を反映
+	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+	//ワールドマトリックスの設定
+	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 
 	for (int nCntMat = 0; nCntMat < NUM_MODEL_BIRD1; nCntMat++)
 	{
 		m_apModel[nCntMat]->Draw();
 	}
+	
 }
+
+////==============================================================
+////コンストラクタ
+////==============================================================
+//CEnemyWitch::CEnemyWitch()
+//{
+//	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
+//	{
+//		m_apModel[nCntPlayer] = nullptr;		//敵(パーツ)へのポインタ
+//	}
+//}
+//
+////==============================================================
+////デストラクタ
+////==============================================================
+//CEnemyWitch::~CEnemyWitch()
+//{
+//
+//}
+//
+//
+////==============================================================
+////弾の初期化処理
+////==============================================================
+//HRESULT CEnemyWitch::Init(void)
+//{
+//	//敵の生成（全パーツ分）
+//	for (int nCntModel = 0; nCntModel < NUM_MODEL_BIRD1; nCntModel++)
+//	{
+//		m_apModel[nCntModel] = m_apModel[nCntModel]->Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), m_apFileName[nCntModel]);
+//	}
+//
+//	//モデルのファイル読み込み
+//	SetModel("data\\TXT\\enemy01.txt");
+//
+//	m_pMotion = NULL;
+//
+//	if (m_pMotion == NULL)
+//	{
+//		m_pMotion = m_pMotion->Create();
+//
+//		if (m_pMotion != NULL)
+//		{
+//			//モーションの初期化・生成
+//			m_pMotion->SetModel(&m_apModel[0], 7);
+//			m_pMotion->Init("data\\TXT\\enemy01.txt", NUM_MODEL_BIRD1);
+//		}
+//	}
+//
+//	//最大値・最小値代入
+//	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
+//	{
+//		m_max.y += m_apModel[nCntPlayer]->GetSizeMax().y;		//最大値加算
+//
+//																//最大値入れ替え
+//		if (m_max.x < m_apModel[nCntPlayer]->GetSizeMax().x)
+//		{
+//			m_max.x = m_apModel[nCntPlayer]->GetSizeMax().x;		//最小値X
+//		}
+//		if (m_max.z < m_apModel[nCntPlayer]->GetSizeMax().z)
+//		{
+//			m_max.z = m_apModel[nCntPlayer]->GetSizeMax().z;		//最小値Z
+//
+//		}
+//
+//		//最小値入れ替え
+//		if (m_min.x > m_apModel[nCntPlayer]->GetSizeMin().x)
+//		{
+//			m_min.x = m_apModel[nCntPlayer]->GetSizeMin().x;		//最小値X
+//		}
+//		if (m_min.y > m_apModel[nCntPlayer]->GetSizeMin().y)
+//		{
+//			m_min.y = m_apModel[nCntPlayer]->GetSizeMin().y;		//最小値Y
+//		}
+//		if (m_min.z > m_apModel[nCntPlayer]->GetSizeMin().z)
+//		{
+//			m_min.z = m_apModel[nCntPlayer]->GetSizeMin().z;		//最小値Z
+//
+//		}
+//	}
+//
+//	return S_OK;
+//}
+//
+////==============================================================
+////弾の終了処理
+////==============================================================
+//void CEnemyWitch::Uninit(void)
+//{
+//	for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
+//	{
+//		if (m_apModel[nCntEnemy] != NULL)
+//		{//使用されてるとき
+//
+//		 //終了処理
+//			m_apModel[nCntEnemy]->Uninit();
+//			m_apModel[nCntEnemy] = NULL;
+//		}
+//	}
+//
+//	if (m_pMotion != NULL)
+//	{//使用されてるとき
+//
+//	 //モーションの破棄
+//		delete m_pMotion;
+//		m_pMotion = NULL;
+//	}
+//
+//
+//	//オブジェクト2Dの終了処理
+//	CEnemy::Uninit();
+//}
+//
+////==============================================================
+////弾の更新処理
+////==============================================================
+//void CEnemyWitch::Update(void)
+//{
+//	
+//	//モーションの更新処理
+//	m_pMotion->Update();
+//
+//	//回転量増加(仮)
+//	m_rot.y += 0.01f;
+//
+//	SetState();
+//
+//	//オブジェクト2Dの更新処理
+//	CEnemy::Update();
+//}
+//
+////==============================================================
+////弾の描画処理
+////==============================================================
+//void CEnemyWitch::Draw(void)
+//{
+//	//オブジェクト2Dの描画処理
+//	CEnemy::Draw();
+//
+//
+//	for (int nCntMat = 0; nCntMat < NUM_MODEL_BIRD1; nCntMat++)
+//	{
+//		m_apModel[nCntMat]->Draw();
+//	}
+//}
 
 //==============================================================
 //状態設定
 //==============================================================
-void CEnemyWitch::SetState(void)
+void CEnemy::SetState(void)
 {
 	CPlayer *pPlayerModel = CGame::GetPlayerModel();
 
@@ -331,16 +405,11 @@ void CEnemyWitch::SetState(void)
 
 		//プレイヤーの座標に向けて弾を
 		rot = D3DXVECTOR3(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().y - m_pos.y, pPlayerModel->GetPosition().z - m_pos.z);
-		fAngle = atan2f(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().z - m_pos.z);
+
+		move = D3DXVECTOR3(-sinf(m_rot.y) * 10.0f, 0.0f, -cosf(m_rot.y) * 10.0f);
 
 
-		//fAngle = atan2f(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().y - m_pos.y);
-		move.x = sinf(fAngle) * 10.0f;
-		move.y = 0.0f;
-		move.z = sinf(fAngle) * 10.0f;
-
-
-		CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f * 0.5f, m_pos.z), D3DXVECTOR3(0.0f,0.0f,0.0f), move,CBullet::TYPE_A ,TYPE_ENEMY);
+		CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f * 0.5f, m_pos.z),m_rot, move,CBullet::TYPE_C ,TYPE_ENEMY);
 		
 
 		m_state = STATE_NONE;
@@ -369,7 +438,7 @@ void CEnemyWitch::SetState(void)
 //=============================================================
 //モデルの読み込み
 //=============================================================
-void CEnemyWitch::SetModel(const char * c_FileName)
+void CEnemy::SetModel(const char * c_FileName)
 {
 	FILE *pFile;				//ファイルポインタ
 	char aString[126];		//文字読み込み

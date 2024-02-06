@@ -620,7 +620,7 @@ void CPlayer::Hit(void)
 	{
 		//m_state = CObject::STATE_DAMAGE;
 
-		for (int nCntEnemy = 0; nCntEnemy < 15; nCntEnemy++)
+		for (int nCntEnemy = 0; nCntEnemy < 9; nCntEnemy++)
 		{
 			//m_apModel[nCntEnemy]->SetState(m_state);		//ƒ_ƒ[ƒWó‘Ô‚É‚·‚é
 		}
@@ -667,7 +667,7 @@ void CPlayer::SetState(void)
 			m_state = STATE_NONE;
 
 			//ó‘Ôİ’è
-			for (int nCntEnemy = 0; nCntEnemy < 15; nCntEnemy++)
+			for (int nCntEnemy = 0; nCntEnemy < 9; nCntEnemy++)
 			{
 				m_apModel[nCntEnemy]->SetState(m_state);		//’Êíó‘Ô‚É‚·‚é
 			}
@@ -681,7 +681,7 @@ void CPlayer::SetState(void)
 			m_bLand = false;
 
 			//ó‘Ôİ’è
-			for (int nCntEnemy = 0; nCntEnemy < 15; nCntEnemy++)
+			for (int nCntEnemy = 0; nCntEnemy < 9; nCntEnemy++)
 			{
 				m_apModel[nCntEnemy]->SetState(m_state);		//’Êíó‘Ô‚É‚·‚é
 			}

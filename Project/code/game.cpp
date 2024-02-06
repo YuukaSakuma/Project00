@@ -1,6 +1,6 @@
 //==============================================================
 //
-//爆発処理[explosion.cpp]
+//ゲーム処理[explosion.cpp]
 //Author:佐久間優香
 //
 //==============================================================
@@ -63,7 +63,7 @@ HRESULT CGame::Init(void)
 
 	CField::Create(CObject::TYPE_NONE, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
-	CEnemy::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f),CEnemy::ENEMY_WITCH);
+	CEnemy::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f));
 
 	//プレイヤーの生成
 	m_pPlayerModel = CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
