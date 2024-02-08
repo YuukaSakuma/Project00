@@ -41,7 +41,7 @@ public:
 	HRESULT Load(void);		//テクスチャ読み込み処理
 	void Unload(void);		//テクスチャ破棄処理
 
-	int Regit(const char *pFilename);				//テクスチャの番号指定
+	int Regist(const char *pFilename);				//テクスチャの番号指定
 	LPDIRECT3DTEXTURE9 GetTexAddress(int nIdx, int nMat);		//テクスチャの情報取得
 	LPD3DXBUFFER GetMatAddress(int nIdx);		//マテリアルの情報取得
 	DWORD GetNumMatAddress(int nIdx);			//マテリアルの数の情報取得
@@ -91,19 +91,18 @@ private:
 //	CXFile();		//コンストラクタ
 //	~CXFile();	//デストラクタ
 //
-//	int Regist(const char *pFilename);				//テクスチャの番号指定
-//	void Unload(void);		//テクスチャ破棄処理
+//	// メンバ関数
+//	int Regist(const char *pFileName);
+//	void Unload(void);
 //	void SetSizeVtxMax(int nIdx, D3DXVECTOR3 vtxMax) { m_apModelFileData[nIdx]->filedata.vtxMax = vtxMax; }
 //	void SetSizeVtxMin(int nIdx, D3DXVECTOR3 vtxMin) { m_apModelFileData[nIdx]->filedata.vtxMin = vtxMin; }
 //
+//	// メンバ関数(取得)
 //	FileData *SetAddress(int nIdx);
 //	static int GetNumAll(void) { return m_nNumAll; }
 //	D3DXVECTOR3 GetMax(int nIdx) { return m_apModelFileData[nIdx]->filedata.vtxMax; }
 //	D3DXVECTOR3 GetMin(int nIdx) { return m_apModelFileData[nIdx]->filedata.vtxMin; }
 //	char *GetFileName(int nIdx) { return &m_apModelFileData[nIdx]->aFileName[0]; }
-//
-//	HRESULT Load(void);		//テクスチャ読み込み処理
-//	void Unload(void);		//テクスチャ破棄処理
 //
 //private:
 //

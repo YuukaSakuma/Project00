@@ -118,7 +118,7 @@ void CXFile::Unload(void)
 //==============================================================
 //モデル番号指定処理
 //==============================================================
-int CXFile::Regit(const char *pFilename)
+int CXFile::Regist(const char *pFilename)
 {
 	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
 

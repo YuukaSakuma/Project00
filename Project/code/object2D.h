@@ -28,7 +28,10 @@ public:
 	static CObject2D *Create(void);		//¶¬ˆ—
 
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }		//ˆÊ’u‚Ìİ’è
+	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
+
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }			//ˆÊ’u‚Ìæ“¾
+	D3DXVECTOR3 GetRotation(void) { return m_rot; }			//ˆÊ’u‚Ìæ“¾
 
 	void SetMove(D3DXVECTOR3 move) { m_move = move; }	//ˆÚ“®—Êİ’è
 	D3DXVECTOR3 GetMove(void) { return m_move; }		//ˆÚ“®—Êæ“¾

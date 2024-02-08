@@ -75,11 +75,10 @@ private:
 //	D3DXMATRIX *GetMtxParent(void) { return m_pParentMtx; }
 //	int GetId(void) { return m_nIdxModel; }
 //
-//	void SetPosition(const D3DXVECTOR3 pos);
-//	void SetRotation(const D3DXVECTOR3 rot);
-//	void SetCurrentPosition(const D3DXVECTOR3 pos);
-//	void SetCurrentRotation(const D3DXVECTOR3 rot);
-//	void SetDraw(bool bDraw = true) { m_bDraw = bDraw; }
+//	void SetPosition( D3DXVECTOR3 pos);
+//	void SetRotation( D3DXVECTOR3 rot);
+//	void SetCurrentPosition( D3DXVECTOR3 pos);
+//	void SetCurrentRotation( D3DXVECTOR3 rot);
 //	void SetShadow(bool bShadow = false) { m_bShadow = bShadow; }
 //	void SetMaterial(const D3DMATERIAL9& Material) { m_ChangeMat = Material; }
 //	void ChangeCol(bool bValue = false) { m_bChangeCol = bValue; }
@@ -89,7 +88,6 @@ private:
 //			// メンバ変数
 //	int m_nIdxModel;		// モデル番号
 //	bool m_bChangeCol;	// 色変更をするかどうか
-//	bool m_bDraw;
 //	D3DMATERIAL9 m_ChangeMat;
 //	D3DXVECTOR3 m_pos;		// 位置
 //	D3DXVECTOR3 m_rot;		// 向き

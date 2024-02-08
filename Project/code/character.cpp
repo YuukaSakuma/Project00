@@ -11,7 +11,6 @@
 #include"model.h"
 #include"motion.h"
 #include"objectX.h"
-#include"modelHierarchy.h"
 #include <stdio.h>
 #include"debugproc.h"
 #include"game.h"

@@ -116,7 +116,7 @@ void CMap::ObjectSet(FILE *pFile)
 	{//ï∂éöÇ™ì«Ç›çûÇ‹ÇÍÇΩÇÁ
 	 
 		//ÉÇÉfÉãÇÃê›íu
-		CModel::Create(D3DXVECTOR3(pos.x, pos.y, pos.z), D3DXVECTOR3(rot.x, rot.y, rot.z), m_apFileName[nIndex]);
+		//CModel::Create(D3DXVECTOR3(pos.x, pos.y, pos.z), D3DXVECTOR3(rot.x, rot.y, rot.z), m_apFileName[nIndex]);
 	}
 }
 

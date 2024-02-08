@@ -15,8 +15,6 @@
 #include"wall.h"
 #include"map.h"
 #include"result.h"
-#include"life.h"
-#include"itemX.h"
 #include "enemy.h"
 
 #define START_TIME (180)		//ŠJŽnŽžŠÔ

@@ -119,10 +119,10 @@ void CModel::Unload(void)
 //==============================================================
 HRESULT CModel::Init(void)
 {
-	CXFile *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetModelFile();
 
 	//モデルの読み込み
-	m_nIdxModel = pMaterial->Regit(m_pFilename);
+	m_nIdxModel = pMaterial->Regist(m_pFilename);
 
 	//マテリアルの割り当て
 	CObjectX::BindMaterial(m_nIdxModel);

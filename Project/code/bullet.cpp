@@ -58,19 +58,19 @@ CBullet *CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move,Bull
 	{
 		switch (btype)
 		{
-		case CBullet::TYPE_A:
+		case CBullet::TYPE_A:		//ƒvƒŒƒCƒ„[
 
 			pBullet = new CBulletA;
 
 			break;
 
-		case CBullet::TYPE_B:
+		case CBullet::TYPE_B:		//ƒvƒŒƒCƒ„[
 
 			pBullet = new CBulletB;
 
 			break;
 
-		case CBullet::TYPE_C:
+		case CBullet::TYPE_C:		//“G
 
 			pBullet = new CBulletC;
 
@@ -290,226 +290,62 @@ bool CBullet::CollisionModel(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld)
 
 				 //ƒ‚ƒfƒ‹‚ÌˆÊ’uæ“¾
 					D3DXVECTOR3 posModel = pObj->GetPosition();
-					//D3DXVECTOR3 rotModel = pObj->GetRotation();
+					D3DXVECTOR3 rotModel = pObj->GetRotation();
 					D3DXVECTOR3 minModel = pObj->GetSizeMin();
 					D3DXVECTOR3 maxModel = pObj->GetSizeMax();
 
-					if (pPos->y + HEIGHT > posModel.y
-						&& pPos->y < posModel.y + maxModel.y)
+					if (pPos->x + 30.0f >= posModel.x + minModel.x &&
+						pPos->x - 30.0f <= posModel.x + maxModel.x &&
+						pPos->y + 30.0f >= posModel.y + minModel.y &&
+						pPos->y - 30.0f <= posModel.y + maxModel.y &&
+						pPos->z > posModel.z + minModel.z &&
+						pPos->z < posModel.z + maxModel.z)
 					{
-						if (pPosOld->x <= posModel.x + minModel.x
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//¶‚É‚ß‚è‚ñ‚¾ê‡
+						if (type == TYPE_ENEMY)
+						{//“G‚Ìê‡
 
-							if (type == TYPE_ENEMY)
-							{//“G‚Ìê‡
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-							return true;
-
+						 //“G‚Ìƒqƒbƒgˆ—
+							pObj->Hit();
 						}
+						//”š”­‚Ì¶¬
+						CExplosion::Create(m_pos, TYPE_EXPLOSION);
 
-						if (pPosOld->x >= posModel.x + maxModel.x
-							&& pPos->x < posModel.x + maxModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//‰E‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_ENEMY)
-							{//“G‚Ìê‡
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							 
-							}
-
-							return true;
-						}
-
-						if (pPosOld->z <= posModel.z + minModel.z
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x)
-						{//è‘O‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_ENEMY)
-							{//“G‚Ìê‡
-
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
-
-						if (pPosOld->z >= posModel.z + maxModel.z
-							&& pPos->z < posModel.z + maxModel.z
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x)
-						{//‰œ‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_ENEMY)
-							{//“G‚Ìê‡
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
-
-						if (pPosOld->y <= posModel.y + minModel.y
-							&& pPos->y > posModel.y + minModel.y
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//’ê‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_ENEMY)
-							{//“G‚Ìê‡
-
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
-
-						if (pPosOld->y >= posModel.y + maxModel.y
-							&& pPos->y < posModel.y + maxModel.y
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//ã‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_ENEMY)
-							{//“G‚Ìê‡
-
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
+						return true;
 					}
 				}
 			}
 			else if (m_type == TYPE_ENEMY)
 			{
-				if (type == pObj->TYPE_MODEL || type == TYPE_PLAYER)
+				if (type == pObj->TYPE_MODEL || type == pObj->TYPE_PLAYER )
 				{//í—Ş‚ªƒ‚ƒfƒ‹‚Ìê‡
 
 				 //ƒ‚ƒfƒ‹‚ÌˆÊ’uæ“¾
 					D3DXVECTOR3 posModel = pObj->GetPosition();
-					//D3DXVECTOR3 rotModel = pObj->GetRotation();
+					D3DXVECTOR3 rotModel = pObj->GetRotation();
 					D3DXVECTOR3 minModel = pObj->GetSizeMin();
 					D3DXVECTOR3 maxModel = pObj->GetSizeMax();
 
-					if (pPos->y + HEIGHT > posModel.y
-						&& pPos->y < posModel.y + maxModel.y)
+					if (pPos->x + 30.0f >= posModel.x + minModel.x &&
+						pPos->x - 30.0f <= posModel.x + maxModel.x &&
+						pPos->y + 30.0f >= posModel.y + minModel.y &&
+						pPos->y - 30.0f <= posModel.y + maxModel.y &&
+						pPos->z > posModel.z + minModel.z &&
+						pPos->z < posModel.z + maxModel.z)
 					{
-						if (pPosOld->x <= posModel.x + minModel.x
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//¶‚É‚ß‚è‚ñ‚¾ê‡
+						if (type == TYPE_PLAYER)
+						{//“G‚Ìê‡
 
-							if (type == TYPE_PLAYER)
-							{//“G‚Ìê‡
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-							return true;
-
+						 //“G‚Ìƒqƒbƒgˆ—
+							pObj->Hit();
 						}
+						
+						//”š”­‚Ì¶¬
+						CExplosion::Create(m_pos,TYPE_EXPLOSION);
 
-						if (pPosOld->x >= posModel.x + maxModel.x
-							&& pPos->x < posModel.x + maxModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//‰E‚É‚ß‚è‚ñ‚¾ê‡
-
-
-							if (type == TYPE_PLAYER)
-							{//“G‚Ìê‡
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-
-							}
-
-							return true;
-						}
-
-						if (pPosOld->z <= posModel.z + minModel.z
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x)
-						{//è‘O‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_PLAYER)
-							{//“G‚Ìê‡
-
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
-
-						if (pPosOld->z >= posModel.z + maxModel.z
-							&& pPos->z < posModel.z + maxModel.z
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x)
-						{//‰œ‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_PLAYER)
-							{//“G‚Ìê‡
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
-
-						if (pPosOld->y <= posModel.y + minModel.y
-							&& pPos->y > posModel.y + minModel.y
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//’ê‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_PLAYER)
-							{//“G‚Ìê‡
-
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
-
-						if (pPosOld->y >= posModel.y + maxModel.y
-							&& pPos->y < posModel.y + maxModel.y
-							&& pPos->x > posModel.x + minModel.x
-							&& pPos->x < posModel.x + maxModel.x
-							&& pPos->z > posModel.z + minModel.z
-							&& pPos->z < posModel.z + maxModel.z)
-						{//ã‚É‚ß‚è‚ñ‚¾ê‡
-
-							if (type == TYPE_PLAYER)
-							{//“G‚Ìê‡
-
-							 //“G‚Ìƒqƒbƒgˆ—
-								pObj->Hit();
-							}
-
-							return true;
-						}
+						return true;
 					}
+
+				
 				}
 			}
 		}

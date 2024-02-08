@@ -61,9 +61,9 @@ public:
 	virtual void Hit(void) {};		//ヒット処理
 
 	virtual void SetRotation(D3DXVECTOR3 rot) {};										//位置の設定
-	virtual D3DXVECTOR3 GetRotation(void) { return D3DXVECTOR3(0.0f, 0.0f, 0.0f); }		//位置の取得
-
 	virtual void SetPosition(D3DXVECTOR3 pos) {};										//位置の設定
+
+	virtual D3DXVECTOR3 GetRotation(void) { return D3DXVECTOR3(0.0f, 0.0f, 0.0f); }		//位置の取得
 	virtual D3DXVECTOR3 GetPosition(void) { return D3DXVECTOR3(0.0f, 0.0f, 0.0f); }		//位置の取得
 																						
 	virtual D3DXVECTOR3 GetSizeMin(void) { return D3DXVECTOR3(0.0f, 0.0f, 0.0f); }		//最小サイズの取得

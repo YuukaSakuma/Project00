@@ -120,8 +120,11 @@ HRESULT CEnemy::Init(void)
 	//最大値・最小値代入
 	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
 	{
-		m_max.y += m_apModel[nCntPlayer]->GetSizeMax().y;		//最大値加算
-
+		if ((nCntPlayer <= 0 && nCntPlayer <= 2) ||
+			(nCntPlayer <= 5 && nCntPlayer <= 6))
+		{
+			m_max.y += m_apModel[nCntPlayer]->GetSizeMax().y;		//最大値加算
+		}
 																//最大値入れ替え
 		if (m_max.x < m_apModel[nCntPlayer]->GetSizeMax().x)
 		{
@@ -152,8 +155,8 @@ HRESULT CEnemy::Init(void)
 	////オブジェクト2Dの初期化処理
 	//CObject::Init();
 
-	////種類の設定
-	//CObject::SetType(CObject::TYPE_BULLET);
+	//種類の設定
+	CObject::SetType(CObject::TYPE_ENEMY);
 
 	return S_OK;
 }
@@ -228,151 +231,6 @@ void CEnemy::Draw(void)
 	}
 	
 }
-
-////==============================================================
-////コンストラクタ
-////==============================================================
-//CEnemyWitch::CEnemyWitch()
-//{
-//	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
-//	{
-//		m_apModel[nCntPlayer] = nullptr;		//敵(パーツ)へのポインタ
-//	}
-//}
-//
-////==============================================================
-////デストラクタ
-////==============================================================
-//CEnemyWitch::~CEnemyWitch()
-//{
-//
-//}
-//
-//
-////==============================================================
-////弾の初期化処理
-////==============================================================
-//HRESULT CEnemyWitch::Init(void)
-//{
-//	//敵の生成（全パーツ分）
-//	for (int nCntModel = 0; nCntModel < NUM_MODEL_BIRD1; nCntModel++)
-//	{
-//		m_apModel[nCntModel] = m_apModel[nCntModel]->Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), m_apFileName[nCntModel]);
-//	}
-//
-//	//モデルのファイル読み込み
-//	SetModel("data\\TXT\\enemy01.txt");
-//
-//	m_pMotion = NULL;
-//
-//	if (m_pMotion == NULL)
-//	{
-//		m_pMotion = m_pMotion->Create();
-//
-//		if (m_pMotion != NULL)
-//		{
-//			//モーションの初期化・生成
-//			m_pMotion->SetModel(&m_apModel[0], 7);
-//			m_pMotion->Init("data\\TXT\\enemy01.txt", NUM_MODEL_BIRD1);
-//		}
-//	}
-//
-//	//最大値・最小値代入
-//	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
-//	{
-//		m_max.y += m_apModel[nCntPlayer]->GetSizeMax().y;		//最大値加算
-//
-//																//最大値入れ替え
-//		if (m_max.x < m_apModel[nCntPlayer]->GetSizeMax().x)
-//		{
-//			m_max.x = m_apModel[nCntPlayer]->GetSizeMax().x;		//最小値X
-//		}
-//		if (m_max.z < m_apModel[nCntPlayer]->GetSizeMax().z)
-//		{
-//			m_max.z = m_apModel[nCntPlayer]->GetSizeMax().z;		//最小値Z
-//
-//		}
-//
-//		//最小値入れ替え
-//		if (m_min.x > m_apModel[nCntPlayer]->GetSizeMin().x)
-//		{
-//			m_min.x = m_apModel[nCntPlayer]->GetSizeMin().x;		//最小値X
-//		}
-//		if (m_min.y > m_apModel[nCntPlayer]->GetSizeMin().y)
-//		{
-//			m_min.y = m_apModel[nCntPlayer]->GetSizeMin().y;		//最小値Y
-//		}
-//		if (m_min.z > m_apModel[nCntPlayer]->GetSizeMin().z)
-//		{
-//			m_min.z = m_apModel[nCntPlayer]->GetSizeMin().z;		//最小値Z
-//
-//		}
-//	}
-//
-//	return S_OK;
-//}
-//
-////==============================================================
-////弾の終了処理
-////==============================================================
-//void CEnemyWitch::Uninit(void)
-//{
-//	for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
-//	{
-//		if (m_apModel[nCntEnemy] != NULL)
-//		{//使用されてるとき
-//
-//		 //終了処理
-//			m_apModel[nCntEnemy]->Uninit();
-//			m_apModel[nCntEnemy] = NULL;
-//		}
-//	}
-//
-//	if (m_pMotion != NULL)
-//	{//使用されてるとき
-//
-//	 //モーションの破棄
-//		delete m_pMotion;
-//		m_pMotion = NULL;
-//	}
-//
-//
-//	//オブジェクト2Dの終了処理
-//	CEnemy::Uninit();
-//}
-//
-////==============================================================
-////弾の更新処理
-////==============================================================
-//void CEnemyWitch::Update(void)
-//{
-//	
-//	//モーションの更新処理
-//	m_pMotion->Update();
-//
-//	//回転量増加(仮)
-//	m_rot.y += 0.01f;
-//
-//	SetState();
-//
-//	//オブジェクト2Dの更新処理
-//	CEnemy::Update();
-//}
-//
-////==============================================================
-////弾の描画処理
-////==============================================================
-//void CEnemyWitch::Draw(void)
-//{
-//	//オブジェクト2Dの描画処理
-//	CEnemy::Draw();
-//
-//
-//	for (int nCntMat = 0; nCntMat < NUM_MODEL_BIRD1; nCntMat++)
-//	{
-//		m_apModel[nCntMat]->Draw();
-//	}
-//}
 
 //==============================================================
 //状態設定

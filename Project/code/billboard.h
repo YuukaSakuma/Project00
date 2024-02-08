@@ -28,8 +28,12 @@ public:
 	void Draw(void);		//描画処理
 
 	void BindTexture(int pTexture) { m_nldxTexture = pTexture; }		//テクスチャの割り当て
+
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }					//位置の設定
+	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }					//位置の設定
+
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }						//位置の取得
+	D3DXVECTOR3 GetRotation(void) { return m_pos; }						//位置の取得
 
 	void SetSize(float width, float heiget, float vertical);	//サイズ設定
 

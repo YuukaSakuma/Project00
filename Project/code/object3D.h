@@ -27,8 +27,12 @@ public:
 
 	void BindTexture(int pTexture) { m_nldxTexture = pTexture; }	//テクスチャ番号の取得
 
-	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }	//位置の設定
+	void SetPosition( D3DXVECTOR3 pos) { m_pos = pos; }	//位置の設定
+	void SetRotation( D3DXVECTOR3 rot) { m_rot = rot; }
+
+
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }		//位置の取得
+	D3DXVECTOR3 GetRotation(void) { return m_rot; }
 
 	void SetSize(float width, float heiget,float vertical);	//サイズの設定
 

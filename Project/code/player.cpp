@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include"debugproc.h"
 #include"particle.h"
-#include"life.h"
 #include"game.h"
 #include"score.h"
 #include"bullet.h"
@@ -177,7 +176,7 @@ HRESULT CPlayer::Init(void)
 	for (int nCntPlayer = 0; nCntPlayer < 9; nCntPlayer++)
 	{
 		//Å‘å’lY
-		if ((nCntPlayer <= 0 && nCntPlayer <= 1) ||
+		if ((nCntPlayer <= 0 && nCntPlayer <= 2) ||
 			(nCntPlayer <= 5 && nCntPlayer <= 6))
 		{
 			m_max.y += m_apModel[nCntPlayer]->GetSizeMax().y;		//Å‘å’l‰ÁŽZ
@@ -600,11 +599,11 @@ void CPlayer::Walk(void)
 
 	if (pInputKeyboard->GetTrigger(DIK_H) == true)
 	{
-		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_A,CObject::TYPE_PLAYER);
+		CBullet::Create(D3DXVECTOR3(m_pos.x,m_pos.y + 30.0f,m_pos.z), m_rot, move, CBullet::TYPE_A,CObject::TYPE_PLAYER);
 	}
 	else if (pInputKeyboard->GetTrigger(DIK_J) == true)
 	{
-		CBullet::Create(m_pos, m_rot, move, CBullet::TYPE_B,CObject::TYPE_PLAYER);
+		CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f, m_pos.z), m_rot, move, CBullet::TYPE_B,CObject::TYPE_PLAYER);
 	}
 	
 }

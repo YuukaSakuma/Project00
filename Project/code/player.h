@@ -35,6 +35,9 @@ public:
 	void Control(void);		//“ü—Íˆ—
 	void Screen(void);		//‰æ–ÊŠO”»’è
 
+	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }
+	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
+
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }			//ˆÊ’uæ“¾
 	D3DXVECTOR3 GetRotation(void) { return m_rot; }			//Œü‚«æ“¾
 	D3DXVECTOR3 GetSizeMin(void) { return m_min; }

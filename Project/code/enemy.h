@@ -31,8 +31,8 @@ public:
 	virtual void Update(void);						//更新処理
 	virtual void Draw(void);						//描画処理
 
-	D3DXVECTOR3 GetPosition(void) const { return m_pos; }
-	D3DXVECTOR3 GetRotation(void) const { return m_rot; }
+	D3DXVECTOR3 GetPosition(void) { return m_pos; }
+	D3DXVECTOR3 GetRotation(void) { return m_rot; }
 	D3DXVECTOR3 GetMove(void) const { return m_move; }
 	D3DXVECTOR3 GetSizeMin(void) { return m_min; }			//最小サイズの取得
 	D3DXVECTOR3 GetSizeMax(void) { return m_max; }			//最大サイズの取得

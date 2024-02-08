@@ -157,6 +157,7 @@
     <ClCompile Include="code\bullet.cpp" />
     <ClCompile Include="code\camera.cpp" />
     <ClCompile Include="code\character.cpp" />
+    <ClCompile Include="code\coa.cpp" />
     <ClCompile Include="code\debugproc.cpp" />
     <ClCompile Include="code\edit.cpp" />
     <ClCompile Include="code\effect.cpp" />
@@ -166,15 +167,14 @@
     <ClCompile Include="code\field.cpp" />
     <ClCompile Include="code\game.cpp" />
     <ClCompile Include="code\input.cpp" />
-    <ClCompile Include="code\itemX.cpp" />
-    <ClCompile Include="code\life.cpp" />
     <ClCompile Include="code\light.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\manager.cpp" />
     <ClCompile Include="code\map.cpp" />
+    <ClCompile Include="code\modelHierarchy.cpp" />
+    <ClCompile Include="code\titleTex.cpp" />
     <ClCompile Include="code\Xfile.cpp" />
     <ClCompile Include="code\model.cpp" />
-    <ClCompile Include="code\modelHierarchy.cpp" />
     <ClCompile Include="code\motion.cpp" />
     <ClCompile Include="code\multibg.cpp" />
     <ClCompile Include="code\number.cpp" />
@@ -195,7 +195,6 @@
     <ClCompile Include="code\texture.cpp" />
     <ClCompile Include="code\time.cpp" />
     <ClCompile Include="code\title.cpp" />
-    <ClCompile Include="code\titleTex.cpp" />
     <ClCompile Include="code\tutrial.cpp" />
     <ClCompile Include="code\wall.cpp" />
   </ItemGroup>
@@ -205,6 +204,7 @@
     <ClInclude Include="code\bullet.h" />
     <ClInclude Include="code\camera.h" />
     <ClInclude Include="code\character.h" />
+    <ClInclude Include="code\coa.h" />
     <ClInclude Include="code\debugproc.h" />
     <ClInclude Include="code\edit.h" />
     <ClInclude Include="code\effect.h" />
@@ -214,15 +214,14 @@
     <ClInclude Include="code\field.h" />
     <ClInclude Include="code\game.h" />
     <ClInclude Include="code\input.h" />
-    <ClInclude Include="code\itemX.h" />
-    <ClInclude Include="code\life.h" />
     <ClInclude Include="code\light.h" />
     <ClInclude Include="code\main.h" />
     <ClInclude Include="code\manager.h" />
     <ClInclude Include="code\map.h" />
+    <ClInclude Include="code\modelHierarchy.h" />
+    <ClInclude Include="code\titleTex.h" />
     <ClInclude Include="code\Xfile.h" />
     <ClInclude Include="code\model.h" />
-    <ClInclude Include="code\modelHierarchy.h" />
     <ClInclude Include="code\motion.h" />
     <ClInclude Include="code\multibg.h" />
     <ClInclude Include="code\number.h" />
@@ -243,7 +242,6 @@
     <ClInclude Include="code\texture.h" />
     <ClInclude Include="code\time.h" />
     <ClInclude Include="code\title.h" />
-    <ClInclude Include="code\titleTex.h" />
     <ClInclude Include="code\tutorial.h" />
     <ClInclude Include="code\wall.h" />
   </ItemGroup>

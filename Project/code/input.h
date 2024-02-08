@@ -9,6 +9,8 @@
 
 #include "main.h"
 
+#define NUM_KEY_MAX	(256)	//キーの最大数
+
 //==============================================================
 //入力クラス
 //==============================================================
@@ -42,11 +44,15 @@ public:
 
 	bool GetPress(int nKey);			//プレスの取得
 	bool GetTrigger(int nKey);			//トリガーの取得
+	bool GetRelease(int nKey);
+	bool GetRepeat(int nKey);
 
 private:
-	BYTE m_aKeyState[256];				//キーボードのプレス情報
-	BYTE m_aKeyStateTrigger[256];		//キーボードのトリガー情報
-
+	BYTE m_aKeyState[NUM_KEY_MAX];				//キーボードのプレス情報
+	BYTE m_aKeyStateTrigger[NUM_KEY_MAX];		//キーボードのトリガー情報
+	BYTE m_aKeyStateRelease[NUM_KEY_MAX];
+	BYTE m_aKeyStateRepeat[NUM_KEY_MAX];
+	int m_aRepeatCnt[NUM_KEY_MAX];	// リピートタイマー
 };
 
 #endif

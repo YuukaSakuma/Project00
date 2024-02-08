@@ -39,7 +39,10 @@ public:
 	static CMultiBg *Create(void);		//多重背景の生成処理
 
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }		//位置の設定
+	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
+
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }			//位置の取得
+	D3DXVECTOR3 GetRotation(void) { return m_rot; }
 
 private:
 	 
@@ -48,6 +51,7 @@ private:
 
 	CObject2D *m_apObject2D[TYPE_BG_MAX];		//オブジェクト2Dのテクスチャ
 	D3DXVECTOR3 m_pos;							//位置
+	D3DXVECTOR3 m_rot;
 	float m_fTexV[TYPE_BG_MAX];					//テクスチャ座標の開始位置(V値)
 	float m_fTexU[TYPE_BG_MAX];					//テクスチャ座標の開始位置(U値)
 	float m_fmoveV[TYPE_BG_MAX];				//テクスチャ座標の移動量V

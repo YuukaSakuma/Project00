@@ -136,10 +136,10 @@ CModelHier *CModelHier::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, char *pFileName
 //==============================================================
 HRESULT CModelHier::Init(D3DXVECTOR3 pos, D3DXVECTOR3 rot, char *pFileName)
 {
-	CXFile *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetModelFile();
 
 	//モデルの読み込み
-	m_nIdxModel = pMaterial->Regit(pFileName);
+	m_nIdxModel = pMaterial->Regist(pFileName);
 
 	//位置の設定
 	m_pos = pos;
@@ -152,8 +152,6 @@ HRESULT CModelHier::Init(D3DXVECTOR3 pos, D3DXVECTOR3 rot, char *pFileName)
 
 	return S_OK;
 }
-
-
 
 //==============================================================
 //モデルの終了処理
@@ -183,7 +181,7 @@ void CModelHier::Update(void)
 void CModelHier::Draw(void)
 {
 	LPDIRECT3DDEVICE9 pDevice = CManager::Get()->GetRenderer()->GetDevice();		//デバイスの取得
-	CXFile *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetModelFile();
 	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
 	D3DMATERIAL9 matDef;			//現在のマテリアル保存用
 	D3DXMATERIAL *pMat;
@@ -281,7 +279,7 @@ void CModelHier::Draw(void)
 //==============================================================
 void CModelHier::SetObject(void)
 {
-	CXFile *pMaterial = CManager::Get()->GetMaterial();
+	CXFile *pMaterial = CManager::Get()->GetModelFile();
 
 	int nNumVtx;					//頂点数
 	DWORD dwSizeFVF;				//頂点フォーマットのサイズ

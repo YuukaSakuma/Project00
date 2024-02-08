@@ -26,6 +26,8 @@ public:
 	void Update(void);						//プレイヤーの更新処理
 	void Draw(void);						//プレイヤーの描画処理
 
+	void LoadFile();
+
 private:
 
 

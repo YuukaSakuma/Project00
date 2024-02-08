@@ -5,9 +5,9 @@
 //
 //==============================================================
 #include "motion.h"
-#include "modelHierarchy.h"
 #include "manager.h"
 #include "debugproc.h"
+#include "modelHierarchy.h"
 
 //マクロ定義
 #define FILE_NAME		"data\\TXT\\player.txt"		//モーションテキスト
@@ -340,3 +340,4 @@ void CMotion::FileLoad(const char *c_MotionFile)
 		fclose(pFile);
 	}
 }
+

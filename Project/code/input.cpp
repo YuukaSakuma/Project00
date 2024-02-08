@@ -6,8 +6,7 @@
 //==============================================================
 #include "input.h"
 
-//マクロ定義
-#define NUM_KEY_MAX (256)						//キーの最大数
+#define REPEAT_TIME (15)	//リピートタイマー
 
 //静的メンバ変数
 LPDIRECTINPUT8 CInput::m_pInput = NULL;
@@ -76,6 +75,8 @@ CInputKeyboard::CInputKeyboard()
 {
 	memset(&m_aKeyState[0], 0, sizeof(m_aKeyState));
 	memset(&m_aKeyStateTrigger[0], 0, sizeof(m_aKeyStateTrigger));
+	memset(&m_aKeyStateRelease[0], 0, sizeof(m_aKeyStateRelease));
+	memset(&m_aKeyStateRepeat[0], 0, sizeof(m_aKeyStateRepeat));
 }
 
 //==============================================================
@@ -139,6 +140,29 @@ void CInputKeyboard::Update(void)
 		{
 			m_aKeyStateTrigger[nCntKey] = (m_aKeyState[nCntKey] ^ aKeyState[nCntKey]) & aKeyState[nCntKey];		//キーボードのトリガー情報の保存
 			m_aKeyState[nCntKey] = aKeyState[nCntKey];		//キーボードのプレス情報を保存
+			m_aKeyStateRelease[nCntKey] = (m_aKeyState[nCntKey] ^ aKeyState[nCntKey]) & m_aKeyState[nCntKey];	//キーボードからのリリース情報を保存
+			m_aKeyStateRepeat[nCntKey] = m_aKeyStateTrigger[nCntKey];
+
+			if (GetPress(nCntKey) == true)
+			{
+				m_aRepeatCnt[nCntKey]++;
+
+				if (m_aRepeatCnt[nCntKey] >= REPEAT_TIME)
+				{//リピートカウンターがタイマーを超えたとき
+					m_aRepeatCnt[nCntKey] = 0;
+					m_aKeyStateRepeat[nCntKey] = m_aKeyState[nCntKey];
+				}
+				else
+				{
+					m_aKeyStateRepeat[nCntKey] = m_aKeyStateRelease[nCntKey];
+				}
+			}
+
+			if (GetRelease(nCntKey) == true)
+			{//リリース入力されたとき
+				m_aRepeatCnt[nCntKey] = 0;
+			}
+
 		}
 	}
 	else
@@ -161,4 +185,20 @@ bool CInputKeyboard::GetPress(int nKey)
 bool CInputKeyboard::GetTrigger(int nKey)
 {
 	return(m_aKeyStateTrigger[nKey] & 0x80) ? true : false;
+}
+
+//==============================================================
+//キーボードのリリース情報の獲得
+//==============================================================
+bool CInputKeyboard::GetRelease(int nKey)
+{
+	return(m_aKeyStateRelease[nKey] & 0x80) ? true : false;
+}
+
+//==============================================================
+//キーボードのリピート情報の獲得
+//==============================================================
+bool CInputKeyboard::GetRepeat(int nKey)
+{
+	return(m_aKeyStateRepeat[nKey] & 0x80) ? true : false;
 }
