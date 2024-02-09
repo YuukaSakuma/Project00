@@ -194,6 +194,8 @@ void CEnemy::Uninit(void)
 //==============================================================
 void CEnemy::Update(void)
 {
+	CDebugProc *pDebugProc = CManager::Get()->GetDebugProc();
+
 		//モーションの更新処理
 		m_pMotion->Update();
 	
@@ -201,6 +203,8 @@ void CEnemy::Update(void)
 		m_rot.y += 0.01f;
 	
 		SetState();
+
+		pDebugProc->Print("敵の体力 : [%d] \n", m_nLife);
 }
 
 //==============================================================
@@ -290,6 +294,35 @@ void CEnemy::SetState(void)
 			}
 		}
 		break;
+	}
+}
+
+//==============================================================
+//プレイヤーモデルのヒット処理
+//==============================================================
+void CEnemy::Hit(void)
+{
+	m_nLife--;
+
+	if (m_nLife > 0)
+	{
+		m_state = CObject::STATE_DAMAGE;
+
+		for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
+		{
+			m_apModel[nCntEnemy]->SetState(m_state);		//ダメージ状態にする
+		}
+
+		m_nCntDamage = 5;
+	}
+	else if (m_nLife <= 0)
+	{
+		//パーティクル生成
+		//CParticle::Create(m_pos, D3DXCOLOR(0.1f, 0.4f, 0.5f, 1.0f), TYPE_PLAYER, 30, 40);
+
+		////終了処理
+		//Uninit();
+
 	}
 }
 

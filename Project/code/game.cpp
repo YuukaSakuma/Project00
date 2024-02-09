@@ -16,17 +16,18 @@
 #include"map.h"
 #include"result.h"
 #include "enemy.h"
+#include "coa.h"
 
 #define START_TIME (180)		//開始時間
 #define START_SCORE (0)			//開始スコア
 
 //静的メンバ変数
-CPlayer *CGame::m_pPlayerModel = NULL;	//プレイヤーの情報
-CScore *CGame::m_pScore = NULL;
-CTime *CGame::m_pTime = NULL;
-CEdit *CGame::m_pEdit = NULL;
-CMap *CGame::m_pMap = NULL;
-//CLife *CGame::m_pLife = NULL;
+CPlayer *CGame::m_pPlayerModel = nullptr;	//プレイヤーの情報
+CScore *CGame::m_pScore = nullptr;
+CTime *CGame::m_pTime = nullptr;
+CEdit *CGame::m_pEdit = nullptr;
+CMap *CGame::m_pMap = nullptr;
+CEnemy *CGame::m_pEnemy = nullptr;
 
 bool CGame::m_bReset = true;					//リセットしたかどうか
 
@@ -61,7 +62,17 @@ HRESULT CGame::Init(void)
 
 	CField::Create(CObject::TYPE_NONE, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
-	CEnemy::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f));
+	m_pEnemy = CEnemy::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f));
+
+	CCOa::Create(D3DXVECTOR3(400.0f,50.0f,0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f),CCOa::TYPE_COA_0);
+	CCOa::Create(D3DXVECTOR3(-400.0f, 50.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_0);
+	CCOa::Create(D3DXVECTOR3(0.0f, 50.0f, 400.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_0);
+	CCOa::Create(D3DXVECTOR3(0.0f, 50.0f, -400.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_0);
+
+	CCOa::Create(D3DXVECTOR3(400.0f, 50.0f, 400.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_1);
+	CCOa::Create(D3DXVECTOR3(-400.0f, 50.0f, 400.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_1);
+	CCOa::Create(D3DXVECTOR3(400.0f, 50.0f, -400.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_1);
+	CCOa::Create(D3DXVECTOR3(-400.0f, 50.0f, -400.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), CCOa::TYPE_COA_1);
 
 	//プレイヤーの生成
 	m_pPlayerModel = CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
@@ -144,6 +155,14 @@ void CGame::Update(void)
 	//	//	CManager::Get()->GetFade()->Set(CScene::MODE_RESULT);
 	//	//}
 	//}
+	if (m_pEnemy != nullptr)
+	{
+		if (m_pEnemy->GetLife() <= 0)
+		{
+			CManager::Get()->GetFade()->Set(MODE_RESULT);
+		}
+	}
+
 
 	if (m_pPlayerModel != NULL)
 	{

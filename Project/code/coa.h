@@ -11,20 +11,25 @@
 
 //前方宣言
 class CModel;
-class CModelHier;
-class CMotion;
 
 //==============================================================
 //コアクラス
 //==============================================================
-class CCOa
+class CCOa : CObject
 {
 public:
+
+	typedef enum
+	{
+		TYPE_COA_0 = 0,
+		TYPE_COA_1,
+		TYPE_COA_MAX,
+	}TYPE_COA;
 
 	CCOa();													//コンストラクタ
 	~CCOa();													//デストラクタ
 
-	static CCOa *Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot);	//弾の生成
+	static CCOa *Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, TYPE_COA type);	//弾の生成
 
 	virtual HRESULT Init(void);						//初期化処理
 	virtual void Uninit(void);						//終了処理
@@ -40,11 +45,12 @@ public:
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }
 	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
 	void SetMove(D3DXVECTOR3 move) { m_move = move; }
+	void SetCoaType(TYPE_COA type) { m_CoaType = type; }
 
 	void SetState(void);
+	void Hit(void);
 
 private:
-#define NUM_MODEL_BIRD1		(8)			//敵1のモデル数
 
 	int m_nLife;			//寿命
 	D3DXVECTOR3 m_move;		//移動量
@@ -63,6 +69,7 @@ private:
 	int m_nIdxTexture;			//テクスチャの番号
 	static int m_nNumAll;		//敵の総数
 	int m_nID;					//敵の番号
+	TYPE_COA m_CoaType;
 
 	CModel* m_pModel;
 };

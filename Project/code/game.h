@@ -19,6 +19,7 @@ class CEdit;
 class CEnemyBoss;
 class CMap;
 class CGame;
+class CEnemy;
 
 //==============================================================
 //プレイヤークラス
@@ -37,7 +38,6 @@ public:
 	static CPlayer *GetPlayerModel(void) { return m_pPlayerModel; }				//プレイヤーの情報
 	static CScore *GetScore(void) { return m_pScore; }
 	CTime *GetTime(void) { return m_pTime; }
-	//static CLife *GetLife(void) { return m_pLife; }
 
 private:
 
@@ -48,7 +48,7 @@ private:
 	static CTime *m_pTime;
 	static CEdit *m_pEdit;
 	static CMap *m_pMap;
-	//static CLife *m_pLife;
+	static CEnemy *m_pEnemy;
 
 	int nData;
 

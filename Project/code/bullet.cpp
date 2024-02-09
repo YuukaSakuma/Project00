@@ -307,6 +307,12 @@ bool CBullet::CollisionModel(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld)
 						 //敵のヒット処理
 							pObj->Hit();
 						}
+						else if (type == TYPE_MODEL)
+						{//敵の場合
+
+						 //敵のヒット処理
+						pObj->Hit();
+						}
 						//爆発の生成
 						CExplosion::Create(m_pos, TYPE_EXPLOSION);
 

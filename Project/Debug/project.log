@@ -1,3 +1,3 @@
-﻿  enemy.cpp
+﻿sound.obj : warning LNK4204: 'C:\Users\student\Desktop\Project00\Project\Debug\vc140.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\Debug\project.exe
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\Debug\project.pdb (Full PDB)

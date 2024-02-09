@@ -36,6 +36,7 @@ public:
 	D3DXVECTOR3 GetMove(void) const { return m_move; }
 	D3DXVECTOR3 GetSizeMin(void) { return m_min; }			//最小サイズの取得
 	D3DXVECTOR3 GetSizeMax(void) { return m_max; }			//最大サイズの取得
+	int GetLife(void) { return m_nLife; }
 
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }
 	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
@@ -43,6 +44,7 @@ public:
 
 	void SetModel(const char * c_FileName);
 	void SetState(void);
+	void Hit(void);
 
 private:
 #define NUM_MODEL_BIRD1		(8)			//敵1のモデル数

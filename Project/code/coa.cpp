@@ -7,16 +7,8 @@
 #include"coa.h"
 #include"manager.h"
 #include"explosion.h"
-#include"billboard.h"
-#include"texture.h"
-#include"object.h"
-#include"objectX.h"
 #include"model.h"
-#include"motion.h"
-#include"player.h"
-#include"game.h"
-#include"bullet.h"
-
+#include"particle.h"
 
 //マクロ定義
 #define LIFE				(50)			//寿命
@@ -43,7 +35,7 @@ CCOa::~CCOa()
 //==============================================================
 //弾の生成処理
 //==============================================================
-CCOa *CCOa::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
+CCOa *CCOa::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, TYPE_COA type)
 {
 	CCOa *pCoa = nullptr;
 
@@ -52,12 +44,14 @@ CCOa *CCOa::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 
 		pCoa = new CCOa;
 
-		//初期化処理
-		pCoa->Init();
-
 		pCoa->SetPosition(pos);
 
 		pCoa->SetRotation(rot);
+
+		pCoa->SetCoaType(type);
+
+		//初期化処理
+		pCoa->Init();
 	}
 
 	return pCoa;
@@ -68,13 +62,27 @@ CCOa *CCOa::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 //==============================================================
 HRESULT CCOa::Init(void)
 {
-	//m_pModel = CModel::Create(m_pos,m_rot, "data\\MODEL\\Ground00.x" );
+
+	switch (m_CoaType)
+	{
+	case TYPE_COA_0:
+
+		m_pModel = CModel::Create(m_pos, m_rot, "data\\MODEL\\coa0.x");
+
+		break;
+
+	case TYPE_COA_1:
+
+		m_pModel = CModel::Create(m_pos, m_rot, "data\\MODEL\\coa1.x");
+
+		break;
+	}
 
 	////オブジェクト2Dの初期化処理
 	//CObject::Init();
 
 	////種類の設定
-	//CObject::SetType(CObject::TYPE_BULLET);
+	CObject::SetType(CObject::TYPE_ENEMY);
 
 	return S_OK;
 }
@@ -84,15 +92,23 @@ HRESULT CCOa::Init(void)
 //==============================================================
 void CCOa::Uninit(void)
 {
-
+	if (m_pModel != nullptr)
+	{
+		m_pModel->Uninit();
+		m_pModel = nullptr;
+	}
 }
 
 //==============================================================
 //弾の更新処理
 //==============================================================
 void CCOa::Update(void)
-{	
-		SetState();
+{
+	CDebugProc *pDebugProc = CManager::Get()->GetDebugProc();
+
+	SetState();
+
+	pDebugProc->Print("コアの体力 : [%d] \n", m_nLife);
 }
 
 //==============================================================
@@ -109,4 +125,27 @@ void CCOa::Draw(void)
 void CCOa::SetState(void)
 {
 
+}
+
+//==============================================================
+//プレイヤーモデルのヒット処理
+//==============================================================
+void CCOa::Hit(void)
+{
+	m_nLife--;
+
+	if (m_nLife > 0)
+	{
+
+		//m_nCntDamage = 5;
+	}
+	else if (m_nLife <= 0)
+	{
+		//パーティクル生成
+		CParticle::Create(m_pos, D3DXCOLOR(0.1f, 0.4f, 0.5f, 1.0f), TYPE_PLAYER, 30, 40);
+
+		////終了処理
+		Uninit();
+
+	}
 }
