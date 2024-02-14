@@ -1,3 +1,5 @@
-﻿sound.obj : warning LNK4204: 'C:\Users\student\Desktop\Project00\Project\Debug\vc140.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+﻿  coa.cpp
+  コードを生成中...
+cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\Debug\project.exe
   project.vcxproj -> C:\Users\student\Desktop\Project00\Project\Debug\project.pdb (Full PDB)

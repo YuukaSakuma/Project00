@@ -37,8 +37,9 @@ private:
 
 	static const char *m_pFilename;					//ファイルの名前
 
+	TYPE m_type;
 	int m_nIdxModel;		//モデルの番号
-
+	int m_nLife;
 	D3DXVECTOR3 m_pos;					//位置
 	D3DXVECTOR3 m_rot;					//移動量
 

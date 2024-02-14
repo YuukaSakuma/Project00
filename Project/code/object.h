@@ -30,9 +30,9 @@ public:
 		TYPE_EFFECT,	//エフェクト
 		TYPE_PARTICLE,	//パーティクル
 		TYPE_SCORE,		//スコア
-		TYPE_BLOCK,		//ブロック
 		TYPE_ITEM,		//アイテム
 		TYPE_MODEL,
+		TYPE_COA,
 		TYPE_MAX
 	}TYPE;
 

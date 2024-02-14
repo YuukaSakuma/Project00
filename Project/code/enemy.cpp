@@ -199,8 +199,12 @@ void CEnemy::Update(void)
 		//モーションの更新処理
 		m_pMotion->Update();
 	
+		m_posOld = m_pos;
+
+		
+
 		//回転量増加(仮)
-		m_rot.y += 0.01f;
+		//m_rot.y += 0.01f;
 	
 		SetState();
 
@@ -321,7 +325,7 @@ void CEnemy::Hit(void)
 		//CParticle::Create(m_pos, D3DXCOLOR(0.1f, 0.4f, 0.5f, 1.0f), TYPE_PLAYER, 30, 40);
 
 		////終了処理
-		//Uninit();
+		Uninit();
 
 	}
 }

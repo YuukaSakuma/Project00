@@ -35,7 +35,8 @@ CModel::CModel(D3DXVECTOR3 pos, D3DXVECTOR3 rot, const char *pFilename)
 {
 	m_pos = pos;		//à íu
 	m_rot = rot;		//å¸Ç´
-
+	m_type = TYPE_MODEL;
+	m_nLife = 1;
 	CModel::Load(pFilename);
 }
 
@@ -133,7 +134,8 @@ HRESULT CModel::Init(void)
 	CObjectX::Init();
 
 	//éÌóﬁÇÃê›íË
-	CObject::SetType(CObject::TYPE_MODEL);
+	CObject::SetType(m_type);
+
 
 	return S_OK;
 }
