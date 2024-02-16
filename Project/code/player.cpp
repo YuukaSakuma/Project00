@@ -675,8 +675,6 @@ void CPlayer::SetState(void)
 
 	case STATE_F_JUMP :		//1‰ñ–Ú‚ÌƒWƒƒƒ“ƒvó‘Ô
 
-
-	
 			m_bLand = false;
 
 			//ó‘Ôİ’è

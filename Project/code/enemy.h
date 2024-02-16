@@ -70,7 +70,7 @@ private:
 	int m_nCntMove;			//移動するまで
 
 	STATE m_state;			//状態
-
+	float m_fRotDest;
 	int m_nIdxTexture;			//テクスチャの番号
 	static int m_nNumAll;		//敵の総数
 	int m_nID;					//敵の番号

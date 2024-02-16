@@ -192,19 +192,25 @@ void CEnemy::Uninit(void)
 void CEnemy::Update(void)
 {
 	CDebugProc *pDebugProc = CManager::Get()->GetDebugProc();
-	CPlayer *pPlyer = CGame::GetPlayerModel();
+	CPlayer *pPlayer = CGame::GetPlayerModel();
 
 		//モーションの更新処理
 		m_pMotion->Update();
 	
 		m_posOld = m_pos;
 
-		m_pos += (pPlyer->GetPosition() - m_pos) * 0.005f;
+		SetState();
+
+		m_move.x += (0.0f - m_move.x) * 0.1f;
+		m_move.z += (0.0f - m_move.z) * 0.1f;
+		m_move.y += (0.0f - m_move.y) * 0.1f;
+
+		m_pos += m_move;
 
 		//回転量増加(仮)
 		//m_rot.y += 0.01f;
 	
-		SetState();
+		
 
 		pDebugProc->Print("敵の体力 : [%d] \n", m_nLife);
 }
@@ -242,7 +248,7 @@ void CEnemy::Draw(void)
 //==============================================================
 void CEnemy::SetState(void)
 {
-	CPlayer *pPlayerModel = CGame::GetPlayerModel();
+	CPlayer *pPlayer = CGame::GetPlayerModel();
 
 	float fAngle = 0.0f;
 	D3DXVECTOR3 rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -252,10 +258,17 @@ void CEnemy::SetState(void)
 	{
 	case STATE_NONE:
 
-		if (m_nCntAttack >= 50)
+		m_fRotDest = atan2f(pPlayer->GetPosition().x - m_pos.x, pPlayer->GetPosition().z - m_pos.z) + D3DX_PI;
+		m_move.x += sinf(m_fRotDest - D3DX_PI) * 0.1f;
+		m_move.z += cosf(m_fRotDest - D3DX_PI) * 0.1f;
+
+		//プレイヤーに向かう
+		//m_move = (pPlayer->GetPosition() - m_pos) * 0.005f;
+
+		if (m_nCntAttack >= 100)
 		{
 			m_state = STATE_ATTACK;
-			m_nCntAttack = 0;
+			m_nCntMove = 0;
 		}
 		else
 		{
@@ -266,14 +279,23 @@ void CEnemy::SetState(void)
 
 	case STATE_ATTACK:
 
+		m_nCntMove++;
+
+		//攻撃するときに0にする
+		m_move = D3DXVECTOR3(0.0f,0.0f,0.0f);
+
 		//プレイヤーの座標に向けて弾を
-		rot = D3DXVECTOR3(pPlayerModel->GetPosition().x - m_pos.x, pPlayerModel->GetPosition().y - m_pos.y, pPlayerModel->GetPosition().z - m_pos.z);
+		rot = D3DXVECTOR3(pPlayer->GetPosition().x - m_pos.x, pPlayer->GetPosition().y - m_pos.y, pPlayer->GetPosition().z - m_pos.z);
 
 		move = D3DXVECTOR3(-sinf(m_rot.y) * 10.0f, 0.0f, -cosf(m_rot.y) * 10.0f);
 
-		CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f * 0.5f, m_pos.z),m_rot, move,CBullet::TYPE_C ,TYPE_ENEMY);
-		
-		m_state = STATE_NONE;
+			
+		if (m_nCntMove >= 50)
+		{
+			CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f * 0.5f, m_pos.z), m_rot, move, CBullet::TYPE_C, TYPE_ENEMY);
+			m_state = STATE_NONE;
+			m_nCntAttack = 0;
+		}
 
 		break;
 
