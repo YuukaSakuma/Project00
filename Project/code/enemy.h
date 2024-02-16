@@ -1,6 +1,6 @@
 //==============================================================
 //
-//弾ヘッダー[bullet.h]
+//敵ヘッダー[enemy.h]
 //Author:佐久間優香
 //
 //==============================================================
@@ -15,7 +15,7 @@ class CModelHier;
 class CMotion;
 
 //==============================================================
-//弾クラス
+//敵クラス
 //==============================================================
 class CEnemy : public CObject
 {
@@ -31,6 +31,7 @@ public:
 	virtual void Update(void);						//更新処理
 	virtual void Draw(void);						//描画処理
 
+	//取得
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }
 	D3DXVECTOR3 GetRotation(void) { return m_rot; }
 	D3DXVECTOR3 GetMove(void) const { return m_move; }
@@ -38,6 +39,7 @@ public:
 	D3DXVECTOR3 GetSizeMax(void) { return m_max; }			//最大サイズの取得
 	int GetLife(void) { return m_nLife; }
 
+	//設定
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }
 	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
 	void SetMove(D3DXVECTOR3 move) { m_move = move; }
@@ -47,7 +49,7 @@ public:
 	void Hit(void);
 
 private:
-#define NUM_MODEL_BIRD1		(8)			//敵1のモデル数
+#define ENEMY_MODEL		(8)			//敵1のモデル数
 
 	static LPD3DXMESH m_pMesh;			//メッシュ（頂点情報）へのポインタ
 	static LPD3DXBUFFER m_pBuffMat;		//マテリアルへのポインタ
@@ -65,15 +67,16 @@ private:
 	int m_nldxTexture;		//テクスチャ番号
 	int m_nCntAttack;		//アタックカウンター
 	int m_nCntDamage;		//ダメージカウンター
+	int m_nCntMove;			//移動するまで
 
-	STATE m_state;			//種類
+	STATE m_state;			//状態
 
 	int m_nIdxTexture;			//テクスチャの番号
 	static int m_nNumAll;		//敵の総数
 	int m_nID;					//敵の番号
 
-	CModelHier *m_apModel[NUM_MODEL_BIRD1];		//モデル(パーツ)へのポインタ
-	static char *m_apFileName[NUM_MODEL_BIRD1];	//ファイル名
+	CModelHier *m_apModel[ENEMY_MODEL];		//モデル(パーツ)へのポインタ
+	static char *m_apFileName[ENEMY_MODEL];	//ファイル名
 	CMotion *m_pMotion;		//モーション情報
 };
 #endif // !_BULLET_H_

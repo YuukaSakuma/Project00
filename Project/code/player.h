@@ -55,7 +55,6 @@ public:
 private:
 	void Adjust(void);
 
-
 	static char *m_apFileName[9];		//ファイル名
 
 	D3DXVECTOR3 m_pos;				//位置

@@ -8,7 +8,7 @@
 #define _OBJECTX_H_							//2重インクルード防止のマクロを定義するv
 
 #include "main.h"
-#include"object.h"
+#include "object.h"
 
 // マクロ定義
 #define NUM_TEXTURE	(64)	// テクスチャ最大数
@@ -59,20 +59,16 @@ private:
 	LPD3DXMESH m_pMesh;					//メッシュ(頂点情報)へのポインタ
 	LPD3DXBUFFER m_pBuffMat;			//マテリアルへのポインタ
 	DWORD m_dwNumMat;					//マテリアルの数
-
 	D3DXMATRIX m_mtxWorld;				//ワールドマトリックス
 	D3DXVECTOR3 m_vtxMin;				//最小
 	D3DXVECTOR3 m_vtxMax;				//最大
-
 	D3DXVECTOR3 m_pos;					//位置
 	D3DXVECTOR3 m_rot;					//移動量
 	D3DXVECTOR3 m_move;					//移動量
 	TYPE m_type;						//タイプの設定
 	STATE m_state;						//状態
-
 	int m_nIdxParent;				//親モデルのインデックス
 	D3DXMATERIAL m_matColor;		//マテリアルデータへのポインタ
-
 	int m_nIdxModel;		//モデルの番号
 };
 

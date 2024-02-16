@@ -1,6 +1,6 @@
 //==============================================================
 //
-//弾ヘッダー[bullet.h]
+//コアヘッダー[coa.h]
 //Author:佐久間優香
 //
 //==============================================================
@@ -21,25 +21,28 @@ public:
 
 	typedef enum
 	{
-		TYPE_COA_0 = 0,
-		TYPE_COA_1,
+		TYPE_COA_0 = 0,		//赤
+		TYPE_COA_1,			//青
 		TYPE_COA_MAX,
 	}COA;
 
-	CCOa();													//コンストラクタ
-	~CCOa();													//デストラクタ
+	CCOa();			//コンストラクタ
+	~CCOa();		//デストラクタ
 
-	static CCOa *Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, COA type);	//弾の生成
+	HRESULT Init(void);						
+	void Uninit(void);						
+	void Update(void);						
+	void Draw(void);						
 
-	HRESULT Init(void);						//初期化処理
-	void Uninit(void);						//終了処理
-	void Update(void);						//更新処理
-	void Draw(void);						//描画処理
+	static CCOa *Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, COA type);
 
+	//取得
 	D3DXVECTOR3 GetPosition(void) const { return m_pos; }
 	D3DXVECTOR3 GetRotation(void) const { return m_rot; }
 	D3DXVECTOR3 GetMove(void) const { return m_move; }
+	COA GetCoaType(void) { return m_CoaType; }
 
+	//設定
 	void SetPosition(D3DXVECTOR3 pos) { m_pos = pos; }
 	void SetRotation(D3DXVECTOR3 rot) { m_rot = rot; }
 	void SetMove(D3DXVECTOR3 move) { m_move = move; }
@@ -59,11 +62,7 @@ private:
 	int m_nldxTexture;		//テクスチャ番号
 	int m_nCntAttack;		//アタックカウンター
 	int m_nCntDamage;		//ダメージカウンター
-
-	//STATE m_state;			//種類
-	static int m_nNumAll;		//敵の総数
-	int m_nID;					//敵の番号
-	COA m_CoaType;
-
+	//STATE m_state;		//種類
+	COA m_CoaType;			//コアの種類
 };
 #endif // !_BULLET_H_

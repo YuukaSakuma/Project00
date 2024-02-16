@@ -8,8 +8,14 @@
 #define _INPUT_H_
 
 #include "main.h"
+#include "Xinput.h"
 
+#pragma comment(lib, "xinput.lib")
+
+
+//マクロ定義
 #define NUM_KEY_MAX	(256)	//キーの最大数
+#define NUM_PLAYER (4)		//プレイヤーの人数
 
 //==============================================================
 //入力クラス
@@ -55,4 +61,42 @@ private:
 	int m_aRepeatCnt[NUM_KEY_MAX];	// リピートタイマー
 };
 
+//==============================================================
+//キーボードクラス
+//==============================================================
+class CInputPad : public CInput
+{
+public:
+
+	//ボタン配置の列挙
+	typedef enum
+	{
+		BUTTON_UP = 0,			//上ボタン
+		BUTTON_DOWN,			//下ボタン
+		BUTTON_LEFT,			//左ボタン
+		BUTTON_RIGHT,			//右ボタン
+		BUTTON_START,			//start
+		BUTTON_BACK,			//back
+		BUTTON_LEFTSTCPUSH,		//左スティック押し込み
+		BUTTON_RIGHTSTCPUSH,	//右スティック押し込み
+		BUTTON_LEFTBUTTON,		//LB(L)ボタン
+		BUTTON_RIGHTBUTTON,		//RB(R)ボタン
+		BUTTON_11,				//Lトリガー
+		BUTTON_12,				//Rトリガー
+		BUTTON_A,				//Aボタン
+		BUTTON_B,				//Bボタン
+		BUTTON_X,				//Xボタン
+		BUTTON_Y,				//Yボタン
+		BUTTON_LEFT_Y,			//左(Y)
+		BUTTON_LEFT_X,			//左(X)
+		BUTTON_RIGHT_Y,			//右(Y)
+		BUTTON_RIGHT_X,			//右(X)
+		BUTTON_MAX
+	}BUTTON;
+
+	//CInputPad();		//コンストラクタ
+	//~CInputPad();		//デストラクタ
+
+
+};
 #endif

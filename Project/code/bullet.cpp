@@ -316,12 +316,6 @@ bool CBullet::CollisionModel(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld)
 
 							pObj->Hit();
 						}
-						else if (type == pObj->TYPE_MODEL)
-						{
-							pDebugProc->Print("当たった \n");
-
-							pObj->Hit();
-						}
 						//爆発の生成
 						CExplosion::Create(m_pos, TYPE_EXPLOSION);
 
@@ -331,7 +325,7 @@ bool CBullet::CollisionModel(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld)
 			}
 			else if (m_type == TYPE_ENEMY)
 			{
-				if (type == pObj->TYPE_MODEL || type == pObj->TYPE_PLAYER ||  type == pObj->TYPE_COA)
+				if (type == pObj->TYPE_MODEL || type == pObj->TYPE_PLAYER)
 				{//種類がモデルの場合
 
 				 //モデルの位置取得
@@ -351,13 +345,6 @@ bool CBullet::CollisionModel(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld)
 						{//敵の場合
 
 						 //敵のヒット処理
-							pObj->Hit();
-						}
-
-						else if (type == pObj->TYPE_COA)
-						{
-							pDebugProc->Print("当たった \n");
-
 							pObj->Hit();
 						}
 						//爆発の生成

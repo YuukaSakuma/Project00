@@ -1,23 +1,21 @@
 //==============================================================
 //
-//弾処理[player.cpp]
+//敵処理[enemy.cpp]
 //Author:佐久間優香
 //
 //==============================================================
-#include"enemy.h"
-#include"manager.h"
-#include"explosion.h"
-#include"billboard.h"
-#include"texture.h"
-#include"object.h"
-#include"objectX.h"
-#include"modelHierarchy.h"
-#include"model.h"
-#include"motion.h"
-#include"player.h"
-#include"game.h"
-#include"bullet.h"
-
+#include "enemy.h"
+#include "manager.h"
+#include "explosion.h"
+#include "billboard.h"
+#include "texture.h"
+#include "object.h"
+#include "modelHierarchy.h"
+#include "model.h"
+#include "motion.h"
+#include "player.h"
+#include "game.h"
+#include "bullet.h"
 
 //マクロ定義
 #define LIFE				(50)			//寿命
@@ -28,7 +26,8 @@ LPD3DXBUFFER CEnemy::m_pBuffMat = NULL;				//マテリアルへのポインタ
 DWORD CEnemy::m_dwNumMat = NULL;
 int CEnemy::m_nNumAll = 0;			//敵の総数
 
-char *CEnemy::m_apFileName[NUM_MODEL_BIRD1] =
+//敵のモデル
+char *CEnemy::m_apFileName[ENEMY_MODEL] =
 {
 	"data\\MODEL\\enemy\\00_waist.x",
 	"data\\MODEL\\enemy\\01_body.x",
@@ -40,13 +39,12 @@ char *CEnemy::m_apFileName[NUM_MODEL_BIRD1] =
 	"data\\MODEL\\enemy\\stick.x",
 };
 
-
 //==============================================================
 //コンストラクタ
 //==============================================================
 CEnemy::CEnemy()
 {
-	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
+	for (int nCntPlayer = 0; nCntPlayer < ENEMY_MODEL; nCntPlayer++)
 	{
 		m_apModel[nCntPlayer] = nullptr;		//敵(パーツ)へのポインタ
 	}
@@ -67,7 +65,7 @@ CEnemy::~CEnemy()
 }
 
 //==============================================================
-//弾の生成処理
+//生成処理
 //==============================================================
 CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 {
@@ -75,7 +73,6 @@ CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 
 	if (pEnemy == nullptr)
 	{
-
 		pEnemy = new CEnemy;
 
 		//初期化処理
@@ -90,12 +87,12 @@ CEnemy *CEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 }
 
 //==============================================================
-//弾の初期化処理
+//初期化処理
 //==============================================================
 HRESULT CEnemy::Init(void)
 {
 	//敵の生成（全パーツ分）
-	for (int nCntModel = 0; nCntModel < NUM_MODEL_BIRD1; nCntModel++)
+	for (int nCntModel = 0; nCntModel < ENEMY_MODEL; nCntModel++)
 	{
 		m_apModel[nCntModel] = m_apModel[nCntModel]->Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), m_apFileName[nCntModel]);
 	}
@@ -113,12 +110,12 @@ HRESULT CEnemy::Init(void)
 		{
 			//モーションの初期化・生成
 			m_pMotion->SetModel(&m_apModel[0], 7);
-			m_pMotion->Init("data\\TXT\\enemy01.txt", NUM_MODEL_BIRD1);
+			m_pMotion->Init("data\\TXT\\enemy01.txt", ENEMY_MODEL);
 		}
 	}
 
 	//最大値・最小値代入
-	for (int nCntPlayer = 0; nCntPlayer < NUM_MODEL_BIRD1; nCntPlayer++)
+	for (int nCntPlayer = 0; nCntPlayer < ENEMY_MODEL; nCntPlayer++)
 	{
 		if ((nCntPlayer <= 0 && nCntPlayer <= 2) ||
 			(nCntPlayer <= 5 && nCntPlayer <= 6))
@@ -162,11 +159,11 @@ HRESULT CEnemy::Init(void)
 }
 
 //==============================================================
-//弾の終了処理
+//終了処理
 //==============================================================
 void CEnemy::Uninit(void)
 {
-	for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
+	for (int nCntEnemy = 0; nCntEnemy < ENEMY_MODEL; nCntEnemy++)
 	{
 		if (m_apModel[nCntEnemy] != NULL)
 		{//使用されてるとき
@@ -190,18 +187,19 @@ void CEnemy::Uninit(void)
 }
 
 //==============================================================
-//弾の更新処理
+//更新処理
 //==============================================================
 void CEnemy::Update(void)
 {
 	CDebugProc *pDebugProc = CManager::Get()->GetDebugProc();
+	CPlayer *pPlyer = CGame::GetPlayerModel();
 
 		//モーションの更新処理
 		m_pMotion->Update();
 	
 		m_posOld = m_pos;
 
-		
+		m_pos += (pPlyer->GetPosition() - m_pos) * 0.005f;
 
 		//回転量増加(仮)
 		//m_rot.y += 0.01f;
@@ -212,7 +210,7 @@ void CEnemy::Update(void)
 }
 
 //==============================================================
-//弾の描画処理
+//描画処理
 //==============================================================
 void CEnemy::Draw(void)
 {
@@ -233,11 +231,10 @@ void CEnemy::Draw(void)
 	//ワールドマトリックスの設定
 	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 
-	for (int nCntMat = 0; nCntMat < NUM_MODEL_BIRD1; nCntMat++)
+	for (int nCntMat = 0; nCntMat < ENEMY_MODEL; nCntMat++)
 	{
 		m_apModel[nCntMat]->Draw();
 	}
-	
 }
 
 //==============================================================
@@ -274,16 +271,13 @@ void CEnemy::SetState(void)
 
 		move = D3DXVECTOR3(-sinf(m_rot.y) * 10.0f, 0.0f, -cosf(m_rot.y) * 10.0f);
 
-
 		CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 30.0f * 0.5f, m_pos.z),m_rot, move,CBullet::TYPE_C ,TYPE_ENEMY);
 		
-
 		m_state = STATE_NONE;
 
 		break;
 
 	case STATE_DAMAGE:
-
 
 		m_nCntDamage--;
 
@@ -292,7 +286,7 @@ void CEnemy::SetState(void)
 			m_state = STATE_NONE;
 
 			//状態設定
-			for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
+			for (int nCntEnemy = 0; nCntEnemy < ENEMY_MODEL; nCntEnemy++)
 			{
 				m_apModel[nCntEnemy]->SetState(m_state);		//通常状態にする
 			}
@@ -302,7 +296,7 @@ void CEnemy::SetState(void)
 }
 
 //==============================================================
-//プレイヤーモデルのヒット処理
+//ヒット処理
 //==============================================================
 void CEnemy::Hit(void)
 {
@@ -312,7 +306,7 @@ void CEnemy::Hit(void)
 	{
 		m_state = CObject::STATE_DAMAGE;
 
-		for (int nCntEnemy = 0; nCntEnemy < NUM_MODEL_BIRD1; nCntEnemy++)
+		for (int nCntEnemy = 0; nCntEnemy < ENEMY_MODEL; nCntEnemy++)
 		{
 			m_apModel[nCntEnemy]->SetState(m_state);		//ダメージ状態にする
 		}
@@ -324,7 +318,7 @@ void CEnemy::Hit(void)
 		//パーティクル生成
 		//CParticle::Create(m_pos, D3DXCOLOR(0.1f, 0.4f, 0.5f, 1.0f), TYPE_PLAYER, 30, 40);
 
-		////終了処理
+		//終了処理
 		Uninit();
 
 	}
