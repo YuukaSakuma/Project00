@@ -59,7 +59,7 @@ private:
 	int m_nLife;			//寿命
 	D3DXVECTOR3 m_move;		//移動量
 	D3DXVECTOR3 m_rot;		//向き	
-							//TYPE m_type;			//種類
+	//TYPE m_type;			//種類
 	D3DXVECTOR3 m_pos;		//位置
 	D3DXVECTOR3 m_posOld;	//位置(前回)
 	D3DXVECTOR3 m_max;		//最大値
@@ -71,6 +71,8 @@ private:
 
 	STATE m_state;			//状態
 	float m_fRotDest;
+	float m_fRotDiff;
+	float m_fRotMove;
 	int m_nIdxTexture;			//テクスチャの番号
 	static int m_nNumAll;		//敵の総数
 	int m_nID;					//敵の番号
